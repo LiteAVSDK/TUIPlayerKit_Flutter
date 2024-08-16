@@ -1,0 +1,59 @@
+PODS:
+  - Flutter (1.0.0)
+  - ftuiplayer_kit (1.0.1):
+    - Flutter
+    - TUIPlayerCore/Player_Premium
+    - TUIPlayerShortVideo/Player_Premium
+    - TXLiteAVSDK_Player_Premium
+  - integration_test (0.0.1):
+    - Flutter
+  - Masonry (1.1.0)
+  - SDWebImage (5.19.4):
+    - SDWebImage/Core (= 5.19.4)
+  - SDWebImage/Core (5.19.4)
+  - TUIPlayerCore/Player_Premium (2.0.3):
+    - TXLiteAVSDK_Player_Premium (>= 11.4.0)
+  - TUIPlayerShortVideo/Player_Premium (2.0.3):
+    - Masonry
+    - SDWebImage
+    - TUIPlayerCore/Player_Premium
+  - TXLiteAVSDK_Player_Premium (11.9.15963)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - ftuiplayer_kit (from `.symlinks/plugins/ftuiplayer_kit/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - TUIPlayerCore/Player_Premium (from `../../ios/TUIPlayerCoreSDK/`)
+  - TUIPlayerShortVideo/Player_Premium (from `../../ios/TUIPlayerShortVideoSDK/`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - SDWebImage
+    - TXLiteAVSDK_Player_Premium
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  ftuiplayer_kit:
+    :path: ".symlinks/plugins/ftuiplayer_kit/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  TUIPlayerCore:
+    :path: "../../ios/TUIPlayerCoreSDK/"
+  TUIPlayerShortVideo:
+    :path: "../../ios/TUIPlayerShortVideoSDK/"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  ftuiplayer_kit: f710eb322c27ead561be223ad506391f5748b32b
+  integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: 066c47b573f408f18caa467d71deace7c0f8280d
+  TUIPlayerCore: e89ae6135ac4cbc7df513bf3df50fde2ef83de83
+  TUIPlayerShortVideo: 98161af3c72fa8792454e1609801a1e62eb09182
+  TXLiteAVSDK_Player_Premium: 7c67768e9484814e2dd5d7e769f15b60e14a1e18
+
+PODFILE CHECKSUM: da0aadffaf88904c81670ea1a1ff186a9d34be21
+
+COCOAPODS: 1.15.2
