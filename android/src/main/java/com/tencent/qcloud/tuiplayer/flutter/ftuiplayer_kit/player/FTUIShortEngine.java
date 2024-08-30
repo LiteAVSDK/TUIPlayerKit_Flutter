@@ -32,7 +32,7 @@ public class FTUIShortEngine implements FTUIShortEngineObserver, FtxMessages.FTU
         mMessenger = messenger;
     }
 
-    public int createShortController() {
+    private int createShortController() {
         final int controllerId = mShortIDProvider.getAndIncrement();
         FTUIShortController shortController = new FTUIShortController(mContext, mViewFactory,
                 controllerId ,mMessenger,  this);

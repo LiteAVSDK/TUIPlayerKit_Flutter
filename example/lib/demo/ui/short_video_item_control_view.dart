@@ -29,6 +29,7 @@ class ShortVodItemControlViewState extends State<ShortVodItemControlView> {
   double _currentProgress = 0.0;
   bool _sliderOnDrag = false;
   bool _showCover = true;
+  bool _isPlaying = false;
   FTUIVodControlListener? _vodControlListener;
 
   @override
@@ -38,6 +39,9 @@ class ShortVodItemControlViewState extends State<ShortVodItemControlView> {
   }
 
   void updateController() {
+    if (null != _vodControlListener) {
+      widget.playerController?.removeListener(_vodControlListener!);
+    }
     widget.playerController?.addListener(_vodControlListener = FTUIVodControlListener(onVodPlayerEvent: (event) {
       int eventCode = event[TXVodPlayEvent.EVT_EVENT];
       switch (eventCode) {
@@ -52,19 +56,24 @@ class ShortVodItemControlViewState extends State<ShortVodItemControlView> {
           if (null != duration) {
             videoDuration = duration.toDouble(); // Total playback time, converted unit: seconds
           }
-          if (null != currentDuration && null != videoDuration) {
+          if (null != currentDuration && null != videoDuration && videoDuration != 0) {
             _updateProgress(currentDuration, videoDuration);
           }
-          setState(() {});
           break;
         case TXVodPlayEvent.PLAY_EVT_FIRST_FRAME_RENDERED:
           setState(() {
             _showCover = false;
           });
           break;
+        case TXVodPlayEvent.PLAY_EVT_PLAY_BEGIN:
+          setState(() {
+            _isPlaying = true;
+          });
+          break;
       }
     }));
     setState(() {
+      _isPlaying = widget.playerController?.playerState == TUIPlayerState.PLAYING;
       _showCover = widget.playerController?.playerState == TUIPlayerState.INIT;
     });
   }
@@ -81,6 +90,9 @@ class ShortVodItemControlViewState extends State<ShortVodItemControlView> {
               bool isPlaying = await widget.playerController?.isPlaying() ?? false;
               if (isPlaying) {
                 widget.playerController?.pause();
+                setState(() {
+                  _isPlaying = false;
+                });
               } else {
                 widget.playerController?.resume();
               }
@@ -93,7 +105,7 @@ class ShortVodItemControlViewState extends State<ShortVodItemControlView> {
               right: 10,
               child: VideoSlider(
                 key: _sliderView,
-                min: 0,
+                min: 0.0,
                 max: 100.0,
                 value: _currentProgress,
                 activeColor: Colors.grey,
@@ -124,7 +136,17 @@ class ShortVodItemControlViewState extends State<ShortVodItemControlView> {
                 width: double.infinity,
                 height: double.infinity,
                 child: Image.network(widget.videoSource.coverPictureUrl ?? "", fit: BoxFit.cover),
-              ))
+              )),
+          Visibility(
+            visible: !_isPlaying,
+            child: const Center(
+              child: Image(
+                width: 40,
+                height: 40,
+                image: AssetImage("images/tui_ic_play_normal.png"),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -133,10 +155,10 @@ class ShortVodItemControlViewState extends State<ShortVodItemControlView> {
   void _updateProgress(double currentDuration, double videoDuration) {
     if (!_sliderOnDrag) {
       _currentProgress = (currentDuration / videoDuration) * 100.0;
-      if (_currentProgress > 100) {
-        _currentProgress = 100;
-      } else if (_currentProgress < 0) {
-        _currentProgress = 0;
+      if (_currentProgress > 100.0) {
+        _currentProgress = 100.0;
+      } else if (_currentProgress < 0.0) {
+        _currentProgress = 0.0;
       }
       setState(() {});
     }

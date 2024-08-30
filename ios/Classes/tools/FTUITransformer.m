@@ -47,7 +47,7 @@
     return model;
 }
 
-+ (nonnull TUIPlayerVodStrategyModel *)transToVodStrategyFromMsg:(nonnull FTUIPlayerVodStrategyMsg *)msg {
++ (nonnull TUIPlayerVodStrategyModel *)transToVodStrategyOpenPreFromMsg:(nonnull FTUIPlayerVodStrategyMsg *)msg {
     TUIPlayerVodStrategyModel *model = [[TUIPlayerVodStrategyModel alloc] init];
     if (msg.preloadCount) {
         model.mPreloadConcurrentCount = [msg.preloadCount integerValue];
@@ -70,6 +70,7 @@
     if (msg.renderMode) {
         model.mRenderMode = [msg.renderMode intValue];
     }
+    model.isLastPrePlay = YES;
     return model;
 }
 

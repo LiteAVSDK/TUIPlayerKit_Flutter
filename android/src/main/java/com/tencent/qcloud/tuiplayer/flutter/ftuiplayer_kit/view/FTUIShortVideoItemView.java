@@ -32,7 +32,7 @@ public class FTUIShortVideoItemView implements PlatformView {
         mItemView.setLongClickable(false);
         FtxMessages.FTUIVodPlayerFlutterAPI flutterAPI =
                 new FtxMessages.FTUIVodPlayerFlutterAPI(messenger, String.valueOf(viewId));
-        mController = new FTUIVodController(flutterAPI);
+        mController = new FTUIVodController(flutterAPI, this);
         mItemView.addVideoItemViewListener(mController);
         mItemView.createDisplayView();
         FtxMessages.FTUIVodPlayerAPI.setUp(messenger, String.valueOf(viewId), mController);

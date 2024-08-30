@@ -59,8 +59,11 @@ class VideoSlider extends StatefulWidget {
 
   /// remain two fixed,avoid double precision problem
   double remainTwoFixed(double value) {
+    if (value.isNaN) {
+      value = 0.0;
+    }
     int valueInt = (value * 100).toInt();
-    return valueInt / 100;
+    return valueInt / 100.0;
   }
 
   @override
@@ -109,6 +112,7 @@ class VideoSliderState extends State<VideoSlider> {
       onHorizontalDragEnd: (DragEndDetails details) {
         if (widget.canDrag!) {
           isDraging = false;
+          _seekToPosition(details.globalPosition);
           widget.onDragEnd?.call(widget.controller.progress);
         }
       },

@@ -35,6 +35,7 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
 
     public FTUIShortController(Context context, FTUIItemViewFactory viewFactory, int id, BinaryMessenger messenger,
                                FTUIShortEngineObserver observer) {
+        TUIPlayerLog.i(TAG, "start create shortController,controllerId " + id);
         mManager = new TUIPlayerManager(context, this);
         mDataHolder = mManager.getDataHolder();
         mViewFactory = viewFactory;
@@ -45,11 +46,17 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
 
     public void bindVideoView(int viewId, boolean isPreBind, int curIndex) {
         FTUIShortVideoItemView itemView = mViewFactory.findViewById(viewId);
+        final int count = mDataHolder.size();
+        if (curIndex >= count || curIndex < 0) {
+            TUIPlayerLog.e(TAG, "bindVideoView failed, index outOfRange,index:"
+                    + curIndex + ",isPreBind:" + isPreBind);
+            return;
+        }
         if (null != itemView) {
             TUIBaseVideoView itemVideoView = (TUIBaseVideoView) itemView.getView();
             itemVideoView.bindVideoModel(mDataHolder.getSource(curIndex));
             if (isPreBind) {
-                TUIPlayerLog.v(TAG, "start preRender index" + curIndex);
+                TUIPlayerLog.v(TAG, "start preRender index:" + curIndex);
                 mManager.preRenderOnView(itemVideoView);
             } else {
                 mCurrentIndex = curIndex;
@@ -58,7 +65,7 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
                 TUIPlayerLog.v(TAG, "mCurrentIndex updated to:" + mCurrentIndex);
             }
         } else {
-            TUIPlayerLog.e(TAG, "bindVideoView met a null view,viewId:" + viewId);
+            TUIPlayerLog.e(TAG, "bindVideoView met a null view,viewId:" + viewId + ",isPreBind:" + isPreBind);
         }
     }
 
@@ -109,6 +116,7 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
     }
 
     public void release() {
+        TUIPlayerLog.i(TAG, "start release shortController,controllerId " + mId);
         mManager.releasePlayers();
         mEngineObserver.onRelease(mId);
     }

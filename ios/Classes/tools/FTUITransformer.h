@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray*)transToListVodSourceFromMsg:(FTUIListVodSourceMsg*)msg;
 
-+ (TUIPlayerVodStrategyModel*)transToVodStrategyFromMsg:(FTUIPlayerVodStrategyMsg*)msg;
++ (TUIPlayerVodStrategyModel*)transToVodStrategyOpenPreFromMsg:(FTUIPlayerVodStrategyMsg*)msg;
 
 @end
 

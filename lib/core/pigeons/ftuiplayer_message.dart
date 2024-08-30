@@ -102,6 +102,8 @@ abstract class FTUIVodPlayerAPI {
   double getCurrentPlayTime();
 
   bool isPlaying();
+
+  void release();
 }
 
 @FlutterApi()

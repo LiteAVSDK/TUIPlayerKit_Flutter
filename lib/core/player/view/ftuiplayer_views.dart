@@ -3,15 +3,20 @@ part of '../../../ftuiplayer_kit.dart';
 
 const _kTuiPlayerItemViewType = "TUIShortVideoItemView";
 
-class FTUIPlayerView extends StatelessWidget {
+class FTUIPlayerView extends StatefulWidget {
 
   int _viewId;
+  TUIVodPlayerController? _controller;
   Completer<int> _viewIdCompleter = Completer();
 
   FTUIPlayerView({super.key})
       : _viewId = -1;
 
-  TUIVodPlayerController? _controller;
+  @override
+  State<FTUIPlayerView> createState() => _FTUIPlayerViewState();
+}
+
+class _FTUIPlayerViewState extends State<FTUIPlayerView> {
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +49,12 @@ class FTUIPlayerView extends StatelessWidget {
   }
 
   PlatformViewController _onCreateAndroidView(PlatformViewCreationParams params) {
-    if (_viewIdCompleter.isCompleted) {
-      _viewIdCompleter = Completer();
+    if (widget._viewIdCompleter.isCompleted) {
+      widget._viewIdCompleter = Completer();
     }
-    _viewId = params.id;
-    _viewIdCompleter.complete(params.id);
-    _controller = TUIVodPlayerController(params.id);
+    widget._viewId = params.id;
+    widget._viewIdCompleter.complete(params.id);
+    widget._controller = TUIVodPlayerController(params.id);
     return PlatformViewsService.initSurfaceAndroidView(
       id: params.id,
       viewType: _kTuiPlayerItemViewType,
@@ -65,11 +70,19 @@ class FTUIPlayerView extends StatelessWidget {
   }
 
   void _onCreateIOSView(int id) {
-    if (_viewIdCompleter.isCompleted) {
-      _viewIdCompleter = Completer();
+    if (widget._viewIdCompleter.isCompleted) {
+      widget._viewIdCompleter = Completer();
     }
-    _viewId = id;
-    _viewIdCompleter.complete(id);
-    _controller = TUIVodPlayerController(id);
+    widget._viewId = id;
+    widget._viewIdCompleter.complete(id);
+    widget._controller = TUIVodPlayerController(id);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (defaultTargetPlatform == TargetPlatform.iOS && null != widget._controller) {
+      widget._controller!.release();
+    }
   }
 }

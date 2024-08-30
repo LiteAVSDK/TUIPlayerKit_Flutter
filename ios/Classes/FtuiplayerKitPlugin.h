@@ -7,10 +7,14 @@
 
 #import <Foundation/Foundation.h>
 #import <Flutter/Flutter.h>
+#import "FTUIItemViewFactory.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FtuiplayerKitPlugin : NSObject<FlutterPlugin>
+
+- (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar
+                      viewFactory:(FTUIItemViewFactory*)viewFactory;
 
 @end
 

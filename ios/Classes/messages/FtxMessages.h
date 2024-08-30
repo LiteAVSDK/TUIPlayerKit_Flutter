@@ -111,6 +111,7 @@ extern void SetUpFTUIPlayerShortAPIWithSuffix(id<FlutterBinaryMessenger> binaryM
 - (nullable NSNumber *)getCurrentPlayTimeWithError:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
 - (nullable NSNumber *)isPlayingWithError:(FlutterError *_Nullable *_Nonnull)error;
+- (void)releaseWithError:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void SetUpFTUIVodPlayerAPI(id<FlutterBinaryMessenger> binaryMessenger, NSObject<FTUIVodPlayerAPI> *_Nullable api);

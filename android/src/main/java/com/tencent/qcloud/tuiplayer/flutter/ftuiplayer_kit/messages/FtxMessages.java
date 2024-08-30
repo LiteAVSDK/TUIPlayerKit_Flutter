@@ -988,6 +988,8 @@ public class FtxMessages {
     @NonNull 
     Boolean isPlaying();
 
+    void release();
+
     /** The codec used by FTUIVodPlayerAPI. */
     static @NonNull MessageCodec<Object> getCodec() {
       return PigeonCodec.INSTANCE;
@@ -1193,6 +1195,28 @@ public class FtxMessages {
                 try {
                   Boolean output = api.isPlaying();
                   wrapped.add(0, output);
+                }
+ catch (Throwable exception) {
+                  ArrayList<Object> wrappedError = wrapError(exception);
+                  wrapped = wrappedError;
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.ftuiplayer_kit.FTUIVodPlayerAPI.release" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<Object>();
+                try {
+                  api.release();
+                  wrapped.add(0, null);
                 }
  catch (Throwable exception) {
                   ArrayList<Object> wrappedError = wrapError(exception);

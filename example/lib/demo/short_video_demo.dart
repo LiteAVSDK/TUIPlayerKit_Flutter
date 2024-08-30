@@ -37,8 +37,7 @@ class _ShortVideoDemoState extends State<ShortVideoDemo> with WidgetsBindingObse
       sources.addAll(_videoSourceFactory.loadData());
       _shortPlayerController.appendModels(sources);
     }
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
@@ -59,33 +58,52 @@ class _ShortVideoDemoState extends State<ShortVideoDemo> with WidgetsBindingObse
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: SizedBox(
+        child: Scaffold(
+      backgroundColor: Colors.transparent,
+      body: SizedBox(
           width: double.infinity,
           height: double.infinity,
-          child: PageView.builder(
-              scrollDirection: Axis.vertical,
-              pageSnapping: true,
-              allowImplicitScrolling: true,
-              controller: PageController(),
-              itemCount: sources.length,
-              onPageChanged: (index) {
-                onPageChanged(index);
-                // Pagination
-                if (index >= sources.length - 1) {
-                  _fillData(false);
-                }
-              },
-              itemBuilder: (context, index) {
-                ShortVodItemControlView itemControlView = getFTUIPlayerView(index);
-                if (_isSetModeled && index == 0) {
-                  _isSetModeled = false;
-                  onPageChanged(index);
-                } else {
-                  _shortPlayerController.preCreateVodPlayer(itemControlView.playerView, index);
-                }
-                return itemControlView;
-              })),
-    );
+          child: Stack(
+            children: [
+              PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  pageSnapping: true,
+                  allowImplicitScrolling: true,
+                  controller: PageController(),
+                  itemCount: sources.length,
+                  onPageChanged: (index) {
+                    onPageChanged(index);
+                    // Pagination
+                    if (index >= sources.length - 1) {
+                      _fillData(false);
+                    }
+                  },
+                  itemBuilder: (context, index) {
+                    ShortVodItemControlView itemControlView = getFTUIPlayerView(index);
+                    if (_isSetModeled && index == 0) {
+                      _isSetModeled = false;
+                      onPageChanged(index);
+                    } else {
+                      _shortPlayerController.preCreateVodPlayer(itemControlView.playerView, index);
+                    }
+                    return itemControlView;
+                  }),
+              Positioned(
+                  top: 45,
+                  left: 25,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Image(
+                      width: 35,
+                      height: 35,
+                      image: AssetImage("images/tui_ic_back.png"),
+                    ),
+                  )),
+            ],
+          )),
+    ));
   }
 
   void onPageChanged(int index) async {

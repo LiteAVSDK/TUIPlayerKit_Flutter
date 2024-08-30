@@ -622,6 +622,23 @@ void SetUpFTUIVodPlayerAPIWithSuffix(id<FlutterBinaryMessenger> binaryMessenger,
       [channel setMessageHandler:nil];
     }
   }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:[NSString stringWithFormat:@"%@%@", @"dev.flutter.pigeon.ftuiplayer_kit.FTUIVodPlayerAPI.release", messageChannelSuffix]
+        binaryMessenger:binaryMessenger
+        codec:nullGetFtxMessagesCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(releaseWithError:)], @"FTUIVodPlayerAPI api (%@) doesn't respond to @selector(releaseWithError:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        FlutterError *error;
+        [api releaseWithError:&error];
+        callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
 }
 @interface FTUIVodPlayerFlutterAPI ()
 @property(nonatomic, strong) NSObject<FlutterBinaryMessenger> *binaryMessenger;

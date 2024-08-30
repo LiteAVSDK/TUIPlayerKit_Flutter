@@ -49,6 +49,10 @@ class TUIVodPlayerController implements FTUIVodPlayerFlutterAPI {
     return _playerAPI.isPlaying();
   }
 
+  Future<void> release() async {
+    await _playerAPI.release();
+  }
+
   void addListener(FTUIVodControlListener listener) {
     if (!_listeners.contains(listener)) {
       _listeners.add(listener);
