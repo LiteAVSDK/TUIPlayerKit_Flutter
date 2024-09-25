@@ -146,6 +146,9 @@ public class FTUIVodController implements TUIVodViewListener, FtxMessages.FTUIVo
     @Override
     public void release() {
         mPlatformView.dispose();
+        if (null != mCurSource) {
+            mCurSource.attachView(null);
+        }
     }
 
     @Override

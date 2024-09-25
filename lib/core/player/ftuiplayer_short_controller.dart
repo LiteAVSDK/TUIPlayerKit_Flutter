@@ -59,6 +59,7 @@ class FTUIPlayerShortController {
     return await _api?.startCurrent();
   }
 
+  /// release 会释放所有资源、停掉所有相关的预下载进程
   void release() async {
     await _viewIdCompleter.future;
     await _api?.release();

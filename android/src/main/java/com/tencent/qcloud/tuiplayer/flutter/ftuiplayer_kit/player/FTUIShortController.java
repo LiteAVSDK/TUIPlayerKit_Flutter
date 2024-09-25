@@ -32,10 +32,12 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
     private final FTUIShortEngineObserver mEngineObserver;
     private int mCurrentIndex;
     private final TUIVideoDataHolder mDataHolder;
+    private final BinaryMessenger mMessenger;
 
     public FTUIShortController(Context context, FTUIItemViewFactory viewFactory, int id, BinaryMessenger messenger,
                                FTUIShortEngineObserver observer) {
         TUIPlayerLog.i(TAG, "start create shortController,controllerId " + id);
+        mMessenger = messenger;
         mManager = new TUIPlayerManager(context, this);
         mDataHolder = mManager.getDataHolder();
         mViewFactory = viewFactory;
@@ -115,8 +117,26 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
         bindVideoView(pageViewId.intValue(), true, index.intValue());
     }
 
+//    @Override
+//    public void removeModels(@NonNull Long startIndex, @NonNull Long itemCount) {
+//        mManager.removeModels(startIndex.intValue(), itemCount.intValue());
+//    }
+//
+//    @Override
+//    public void insertModels(@NonNull FtxMessages.FTUIListVodSourceMsg msg, @NonNull Long startIndex) {
+//        List<TUIPlaySource> sources = TUIDataUtils.copyModels(FTUITransformer.transToListVodSourceFromMsg(msg));
+//        mManager.insertModels(sources, startIndex.intValue());
+//    }
+//
+//    @Override
+//    public void replaceModel(@NonNull FtxMessages.FTUIVodSourceMsg msg, @NonNull Long index) {
+//        TUIPlaySource source = FTUITransformer.transToVodSourceFromMsg(msg);
+//        mManager.replaceModel(source, index.intValue());
+//    }
+
     public void release() {
         TUIPlayerLog.i(TAG, "start release shortController,controllerId " + mId);
+        FtxMessages.FTUIPlayerShortAPI.setUp(mMessenger, String.valueOf(mId), null);
         mManager.releasePlayers();
         mEngineObserver.onRelease(mId);
     }

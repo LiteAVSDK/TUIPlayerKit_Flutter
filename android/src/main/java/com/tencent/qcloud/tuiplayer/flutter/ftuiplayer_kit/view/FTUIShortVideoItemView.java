@@ -21,9 +21,11 @@ public class FTUIShortVideoItemView implements PlatformView {
     private final FTUIVodController mController;
     private final FTUIPlatformViewObserver mPlatformObserver;
     private final int viewId;
+    private final BinaryMessenger mMessenger;
 
     public FTUIShortVideoItemView(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams
             , BinaryMessenger messenger, FTUIPlatformViewObserver platformViewObserver) {
+        mMessenger = messenger;
         mPlatformObserver = platformViewObserver;
         viewId = id;
         mItemView = new TUIShortVideoItemView(context);
@@ -45,6 +47,8 @@ public class FTUIShortVideoItemView implements PlatformView {
 
     @Override
     public void dispose() {
+        mItemView.onViewDestroyed();
+        FtxMessages.FTUIVodPlayerAPI.setUp(mMessenger, String.valueOf(viewId), null);
         mPlatformObserver.onDispose(viewId);
     }
 }

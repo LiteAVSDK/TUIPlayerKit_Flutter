@@ -105,13 +105,13 @@ itemBuilder: (context, index) {
 
 页面发生变动示例代码：
 ```dart
- onPageChanged: (index) {
-                ShortVodItemControlView itemControlView = getFTUIPlayerView(index);
-                _currentVodController = await _shortPlayerController.bindVodPlayer(itemControlView.playerView, index);
-                itemControlView.playerController = _currentVodController;
-                // start play after binding
-                await _shortPlayerController.startCurrent();
-              },
+void onPageChanged(int index) async {
+    ShortVodItemControlView itemControlView = getFTUIPlayerView(index);
+    _currentVodController = await _shortPlayerController.bindVodPlayer(itemControlView.playerView, index);
+    itemControlView.playerController = _currentVodController;
+    // start play after binding
+    await _shortPlayerController.startCurrent();
+}
 ```
 
 ## 接口描述

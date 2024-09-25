@@ -71,6 +71,7 @@
         model.mRenderMode = [msg.renderMode intValue];
     }
     model.isLastPrePlay = YES;
+    model.mResumeModel = TUI_RESUM_MODEL_NONE;
     return model;
 }
 
