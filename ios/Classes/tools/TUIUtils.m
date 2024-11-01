@@ -7,6 +7,10 @@
 
 #import "TUIUtils.h"
 
+@interface TUIUtils()
+
+@end
+
 @implementation TUIUtils
 
 + (NSDictionary *)getParamsWithEvent:(int)EvtID withParams:(NSDictionary *)params
@@ -16,6 +20,10 @@
         [dict addEntriesFromDictionary:params];
     }
     return dict;
+}
+
+- (void)test {
+    
 }
 
 @end

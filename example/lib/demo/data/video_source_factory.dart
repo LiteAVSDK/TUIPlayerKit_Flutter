@@ -7,6 +7,11 @@ class DemoVideoSourceFactory {
     List<FTUIVideoSource> dataList = [];
 
     dataList.add(FTUIVideoSource()
+      ..videoURL = "https://1500005830.vod2.myqcloud.com/6c9a5118vodcq1500005830/2ac3d79c3270835009541747411/wNoBYMadwoUA.mp4"
+      ..coverPictureUrl =
+          "http://1500005830.vod2.myqcloud.com/43843ec0vodtranscq1500005830/3afb20b8387702294394227941/coverBySnapshot/coverBySnapshot_10_0.jpg");
+
+    dataList.add(FTUIVideoSource()
       ..appId = 1500005830
       ..fileId = "387702294394228527"
       ..coverPictureUrl =

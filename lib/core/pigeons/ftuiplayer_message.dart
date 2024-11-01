@@ -51,6 +51,7 @@ class FTUIPlayerVodStrategyMsg {
   int? preferredResolution;
   int? progressInterval;
   int? renderMode;
+  bool? enableSuperResolution;
 }
 
 @HostApi()
@@ -59,6 +60,8 @@ abstract class FTUIPlayerKitPluginAPI {
   void setConfig(FTUIPlayerConfigMsg msg);
 
   int createShortEngine();
+
+  void setMonetAppInfo(final int appId, final int authId, final int srAlgorithmType);
 }
 
 @HostApi()
@@ -96,6 +99,8 @@ abstract class FTUIVodPlayerAPI {
   void setMute(bool mute);
 
   void seekTo(double time);
+
+  void setStringOption(String value, Object key);
 
   double getDuration();
 

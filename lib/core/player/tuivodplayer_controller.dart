@@ -37,6 +37,10 @@ class TUIVodPlayerController implements FTUIVodPlayerFlutterAPI {
     await _playerAPI.seekTo(time);
   }
 
+  Future<void> setStringOption(String value, Object key) async {
+    await _playerAPI.setStringOption(value, key);
+  }
+
   Future<double> getDuration() async {
     return _playerAPI.getDuration();
   }

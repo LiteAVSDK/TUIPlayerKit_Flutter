@@ -1,6 +1,7 @@
 // Copyright (c) 2024 Tencent. All rights reserved.
 library ftui_player_kit;
 
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';

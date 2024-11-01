@@ -134,6 +134,12 @@
     [self.platformObserver onDispose:self.viewId];
 }
 
+- (void)setStringOptionValue:(nonnull NSString *)value key:(nonnull id)key error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error { 
+    // ios need string value
+    NSString *str = [NSString stringWithFormat:@"%@", key];
+    [self.curPlayer setExtentOptionInfo:@{value : str}];
+}
+
 
 - (void)currentPlayer:(nonnull TUITXVodPlayer *)player {
 }

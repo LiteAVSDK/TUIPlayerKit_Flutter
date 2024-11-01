@@ -492,17 +492,27 @@ public class FtxMessages {
       this.renderMode = setterArg;
     }
 
+    private @Nullable Boolean enableSuperResolution;
+
+    public @Nullable Boolean getEnableSuperResolution() {
+      return enableSuperResolution;
+    }
+
+    public void setEnableSuperResolution(@Nullable Boolean setterArg) {
+      this.enableSuperResolution = setterArg;
+    }
+
     @Override
     public boolean equals(Object o) {
       if (this == o) { return true; }
       if (o == null || getClass() != o.getClass()) { return false; }
       FTUIPlayerVodStrategyMsg that = (FTUIPlayerVodStrategyMsg) o;
-      return Objects.equals(preloadCount, that.preloadCount) && Objects.equals(preDownloadSize, that.preDownloadSize) && Objects.equals(preloadBufferSizeInMB, that.preloadBufferSizeInMB) && Objects.equals(maxBufferSize, that.maxBufferSize) && Objects.equals(preferredResolution, that.preferredResolution) && Objects.equals(progressInterval, that.progressInterval) && Objects.equals(renderMode, that.renderMode);
+      return Objects.equals(preloadCount, that.preloadCount) && Objects.equals(preDownloadSize, that.preDownloadSize) && Objects.equals(preloadBufferSizeInMB, that.preloadBufferSizeInMB) && Objects.equals(maxBufferSize, that.maxBufferSize) && Objects.equals(preferredResolution, that.preferredResolution) && Objects.equals(progressInterval, that.progressInterval) && Objects.equals(renderMode, that.renderMode) && Objects.equals(enableSuperResolution, that.enableSuperResolution);
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(preloadCount, preDownloadSize, preloadBufferSizeInMB, maxBufferSize, preferredResolution, progressInterval, renderMode);
+      return Objects.hash(preloadCount, preDownloadSize, preloadBufferSizeInMB, maxBufferSize, preferredResolution, progressInterval, renderMode, enableSuperResolution);
     }
 
     public static final class Builder {
@@ -563,6 +573,14 @@ public class FtxMessages {
         return this;
       }
 
+      private @Nullable Boolean enableSuperResolution;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setEnableSuperResolution(@Nullable Boolean setterArg) {
+        this.enableSuperResolution = setterArg;
+        return this;
+      }
+
       public @NonNull FTUIPlayerVodStrategyMsg build() {
         FTUIPlayerVodStrategyMsg pigeonReturn = new FTUIPlayerVodStrategyMsg();
         pigeonReturn.setPreloadCount(preloadCount);
@@ -572,13 +590,14 @@ public class FtxMessages {
         pigeonReturn.setPreferredResolution(preferredResolution);
         pigeonReturn.setProgressInterval(progressInterval);
         pigeonReturn.setRenderMode(renderMode);
+        pigeonReturn.setEnableSuperResolution(enableSuperResolution);
         return pigeonReturn;
       }
     }
 
     @NonNull
     ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(7);
+      ArrayList<Object> toListResult = new ArrayList<Object>(8);
       toListResult.add(preloadCount);
       toListResult.add(preDownloadSize);
       toListResult.add(preloadBufferSizeInMB);
@@ -586,6 +605,7 @@ public class FtxMessages {
       toListResult.add(preferredResolution);
       toListResult.add(progressInterval);
       toListResult.add(renderMode);
+      toListResult.add(enableSuperResolution);
       return toListResult;
     }
 
@@ -605,6 +625,8 @@ public class FtxMessages {
       pigeonResult.setProgressInterval((progressInterval == null) ? null : ((progressInterval instanceof Integer) ? (Integer) progressInterval : (Long) progressInterval));
       Object renderMode = __pigeon_list.get(6);
       pigeonResult.setRenderMode((renderMode == null) ? null : ((renderMode instanceof Integer) ? (Integer) renderMode : (Long) renderMode));
+      Object enableSuperResolution = __pigeon_list.get(7);
+      pigeonResult.setEnableSuperResolution((Boolean) enableSuperResolution);
       return pigeonResult;
     }
   }
@@ -683,6 +705,8 @@ public class FtxMessages {
     @NonNull 
     Long createShortEngine();
 
+    void setMonetAppInfo(@NonNull Long appId, @NonNull Long authId, @NonNull Long srAlgorithmType);
+
     /** The codec used by FTUIPlayerKitPluginAPI. */
     static @NonNull MessageCodec<Object> getCodec() {
       return PigeonCodec.INSTANCE;
@@ -728,6 +752,32 @@ public class FtxMessages {
                 try {
                   Long output = api.createShortEngine();
                   wrapped.add(0, output);
+                }
+ catch (Throwable exception) {
+                  ArrayList<Object> wrappedError = wrapError(exception);
+                  wrapped = wrappedError;
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.ftuiplayer_kit.FTUIPlayerKitPluginAPI.setMonetAppInfo" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<Object>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                Number appIdArg = (Number) args.get(0);
+                Number authIdArg = (Number) args.get(1);
+                Number srAlgorithmTypeArg = (Number) args.get(2);
+                try {
+                  api.setMonetAppInfo((appIdArg == null) ? null : appIdArg.longValue(), (authIdArg == null) ? null : authIdArg.longValue(), (srAlgorithmTypeArg == null) ? null : srAlgorithmTypeArg.longValue());
+                  wrapped.add(0, null);
                 }
  catch (Throwable exception) {
                   ArrayList<Object> wrappedError = wrapError(exception);
@@ -979,6 +1029,8 @@ public class FtxMessages {
 
     void seekTo(@NonNull Double time);
 
+    void setStringOption(@NonNull String value, @NonNull Object key);
+
     @NonNull 
     Double getDuration();
 
@@ -1128,6 +1180,31 @@ public class FtxMessages {
                 Double timeArg = (Double) args.get(0);
                 try {
                   api.seekTo(timeArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  ArrayList<Object> wrappedError = wrapError(exception);
+                  wrapped = wrappedError;
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.ftuiplayer_kit.FTUIVodPlayerAPI.setStringOption" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<Object>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String valueArg = (String) args.get(0);
+                Object keyArg = args.get(1);
+                try {
+                  api.setStringOption(valueArg, keyArg);
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

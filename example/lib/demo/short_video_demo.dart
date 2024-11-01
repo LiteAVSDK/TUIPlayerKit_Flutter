@@ -18,11 +18,13 @@ class _ShortVideoDemoState extends State<ShortVideoDemo> with WidgetsBindingObse
   final List<FTUIVideoSource> sources = [];
   TUIVodPlayerController? _currentVodController;
   bool _isSetModeled = false;
+  final FTUIPlayerVodStrategy _myVodStrategy = FTUIPlayerVodStrategy();
 
   @override
   void initState() {
     super.initState();
-    _shortPlayerController.setVodStrategy(FTUIPlayerVodStrategy());
+    _myVodStrategy.enableSuperResolution = false;
+    _shortPlayerController.setVodStrategy(_myVodStrategy);
     _fillData(true);
     WidgetsBinding.instance.addObserver(this);
   }
@@ -101,9 +103,43 @@ class _ShortVideoDemoState extends State<ShortVideoDemo> with WidgetsBindingObse
                       image: AssetImage("images/tui_ic_back.png"),
                     ),
                   )),
+              Positioned(
+                bottom: 80,
+                left: 20,
+                child: TextButton(
+                  onPressed: () {
+                    _toggleSR();
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: _myVodStrategy.enableSuperResolution
+                        ? WidgetStateProperty.all(const Color(0x8811E811))
+                        : WidgetStateProperty.all(const Color(0xFFE8E8E8)),
+                    shape: WidgetStateProperty.all<OutlinedBorder>(
+                      const CircleBorder(),
+                    ),
+                  ),
+                  child: const Text(
+                      "SR",
+                    style: TextStyle(
+                      color: Colors.black
+                    ),
+                  ),
+                ),
+              )
             ],
           )),
     ));
+  }
+
+  void _toggleSR() async {
+    setState(() {
+      _myVodStrategy.enableSuperResolution  = !_myVodStrategy.enableSuperResolution ;
+    });
+    _handleSROpt(_myVodStrategy.enableSuperResolution);
+  }
+
+  void _handleSROpt(bool isToOpen) async {
+    _shortPlayerController.setVodStrategy(_myVodStrategy);
   }
 
   void onPageChanged(int index) async {

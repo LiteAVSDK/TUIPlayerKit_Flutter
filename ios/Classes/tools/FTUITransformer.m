@@ -70,6 +70,9 @@
     if (msg.renderMode) {
         model.mRenderMode = [msg.renderMode intValue];
     }
+//    if (nil != msg.enableSuperResolution) {
+//        model.superResolutionType = msg.enableSuperResolution ? TUI_SuperResolution_ASR: TUI_SuperResolution_NONE;
+//    }
     model.isLastPrePlay = YES;
     model.mResumeModel = TUI_RESUM_MODEL_NONE;
     return model;

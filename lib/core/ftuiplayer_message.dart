@@ -133,6 +133,7 @@ class FTUIPlayerVodStrategyMsg {
     this.preferredResolution,
     this.progressInterval,
     this.renderMode,
+    this.enableSuperResolution,
   });
 
   int? preloadCount;
@@ -149,6 +150,8 @@ class FTUIPlayerVodStrategyMsg {
 
   int? renderMode;
 
+  bool? enableSuperResolution;
+
   Object encode() {
     return <Object?>[
       preloadCount,
@@ -158,6 +161,7 @@ class FTUIPlayerVodStrategyMsg {
       preferredResolution,
       progressInterval,
       renderMode,
+      enableSuperResolution,
     ];
   }
 
@@ -171,6 +175,7 @@ class FTUIPlayerVodStrategyMsg {
       preferredResolution: result[4] as int?,
       progressInterval: result[5] as int?,
       renderMode: result[6] as int?,
+      enableSuperResolution: result[7] as bool?,
     );
   }
 }
@@ -273,6 +278,28 @@ class FTUIPlayerKitPluginAPI {
       );
     } else {
       return (__pigeon_replyList[0] as int?)!;
+    }
+  }
+
+  Future<void> setMonetAppInfo(int appId, int authId, int srAlgorithmType) async {
+    final String __pigeon_channelName = 'dev.flutter.pigeon.ftuiplayer_kit.FTUIPlayerKitPluginAPI.setMonetAppInfo$__pigeon_messageChannelSuffix';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
+      __pigeon_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: __pigeon_binaryMessenger,
+    );
+    final List<Object?>? __pigeon_replyList =
+        await __pigeon_channel.send(<Object?>[appId, authId, srAlgorithmType]) as List<Object?>?;
+    if (__pigeon_replyList == null) {
+      throw _createConnectionError(__pigeon_channelName);
+    } else if (__pigeon_replyList.length > 1) {
+      throw PlatformException(
+        code: __pigeon_replyList[0]! as String,
+        message: __pigeon_replyList[1] as String?,
+        details: __pigeon_replyList[2],
+      );
+    } else {
+      return;
     }
   }
 }
@@ -619,6 +646,28 @@ class FTUIVodPlayerAPI {
     );
     final List<Object?>? __pigeon_replyList =
         await __pigeon_channel.send(<Object?>[time]) as List<Object?>?;
+    if (__pigeon_replyList == null) {
+      throw _createConnectionError(__pigeon_channelName);
+    } else if (__pigeon_replyList.length > 1) {
+      throw PlatformException(
+        code: __pigeon_replyList[0]! as String,
+        message: __pigeon_replyList[1] as String?,
+        details: __pigeon_replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> setStringOption(String value, Object key) async {
+    final String __pigeon_channelName = 'dev.flutter.pigeon.ftuiplayer_kit.FTUIVodPlayerAPI.setStringOption$__pigeon_messageChannelSuffix';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
+      __pigeon_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: __pigeon_binaryMessenger,
+    );
+    final List<Object?>? __pigeon_replyList =
+        await __pigeon_channel.send(<Object?>[value, key]) as List<Object?>?;
     if (__pigeon_replyList == null) {
       throw _createConnectionError(__pigeon_channelName);
     } else if (__pigeon_replyList.length > 1) {

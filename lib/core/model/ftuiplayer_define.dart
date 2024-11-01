@@ -249,6 +249,18 @@ abstract class TXVodPlayEvent {
   // Play PDT time, Player Premium version 11.6 starts to support
   // 播放PDT时间, 播放器高级版 11.6 版本开始支持
   static const EVT_PLAY_PDT_TIME_MS = "EVT_PLAY_PDT_TIME_MS";
+  // superResolution key
+  // 超分键值
+  static const SUPER_RESOLUTION_OPTION_KEY = "PARAM_SUPER_RESOLUTION_TYPE";
+}
+
+abstract class FTXMonetConstant {
+  /// 标准模式：提供快速的超分辨率处理速度，适用于高实时性要求的场景。在这种模式下，可以实现显著的图像质量改善。
+  static const SR_ALGORITHM_TYPE_STANDARD = 1;
+  /// 专业版-高质量模式：确保了高图像质量，同时需要更高的设备性能。它适合于有高图像质量要求的场景，并推荐在中高端智能手机上使用。
+  static const SR_ALGORITHM_TYPE_PROFESSIONAL_HIGH_QUALITY = 2;
+  /// 专业版-快速模式：在牺牲一些图像质量的同时，确保了更快的处理速度。它适合于有高实时性要求的场景，并推荐在中档智能手机上使用。
+  static const SR_ALGORITHM_TYPE_PROFESSIONAL_FAST = 3;
 }
 
 enum TUIPlayerState {
@@ -344,6 +356,9 @@ class FTUIPlayerVodStrategy {
   /// 1 : adjust video resolution
   int renderMode = 0;
 
+  /// enable SuperResolution
+  bool enableSuperResolution = false;
+
   FTUIPlayerVodStrategyMsg toMsg() {
     FTUIPlayerVodStrategyMsg msg = FTUIPlayerVodStrategyMsg()
       ..preloadCount = preloadCount
@@ -352,7 +367,8 @@ class FTUIPlayerVodStrategy {
       ..maxBufferSize = maxBufferSize
       ..preferredResolution = preferredResolution
       ..progressInterval = progressInterval
-      ..renderMode = renderMode;
+      ..renderMode = renderMode
+      ..enableSuperResolution = enableSuperResolution;
     return msg;
   }
 }

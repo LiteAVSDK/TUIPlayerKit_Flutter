@@ -130,13 +130,13 @@ class ShortVodItemControlViewState extends State<ShortVodItemControlView> {
                   _sliderOnDrag = false;
                 },
               )),
-          Visibility(
-              visible: _showCover,
-              child: SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: Image.network(widget.videoSource.coverPictureUrl ?? "", fit: BoxFit.cover),
-              )),
+          // Visibility(
+          //     visible: _showCover,
+          //     child: SizedBox(
+          //       width: double.infinity,
+          //       height: double.infinity,
+          //       child: Image.network(widget.videoSource.coverPictureUrl ?? "", fit: BoxFit.cover),
+          //     )),
           Visibility(
             visible: !_isPlaying,
             child: const Center(

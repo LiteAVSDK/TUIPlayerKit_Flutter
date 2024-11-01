@@ -16,6 +16,7 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		A25CEF9337E359F8FC921896 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01CC31271FB6D2D7D0D0CCB2 /* Pods_RunnerTests.framework */; };
 		B419E9AC2C59071C00F5F6A3 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B78EABC04D1055F68ABE46 /* Pods_Runner.framework */; };
+		B463F76D2CD36F3600066737 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B463F76C2CD36F3600066737 /* CoreML.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE56FCEA583081E28BD31FDA /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
+		B463F76C2CD36F3600066737 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
 		C33B89D236127AA7F659BDE6 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E94561C5FEA1ED298C7FCF6F /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B463F76D2CD36F3600066737 /* CoreML.framework in Frameworks */,
 				B419E9AC2C59071C00F5F6A3 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +88,7 @@
 		51A55FEB11BA4AF20FACE9C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B463F76C2CD36F3600066737 /* CoreML.framework */,
 				08B78EABC04D1055F68ABE46 /* Pods_Runner.framework */,
 				01CC31271FB6D2D7D0D0CCB2 /* Pods_RunnerTests.framework */,
 			);

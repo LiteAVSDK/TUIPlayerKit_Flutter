@@ -56,6 +56,82 @@ IOS 端依赖原生 TUIPlayerKit 的本地xcFramework，最新正式版可在 [I
 
 *path路径需要替换为您下载的 TUIPlayerKit IOS SDK 所在的目录*
 
+## 本地超分配置指引
+
+FTUIPlayerKit 的超分使用的腾讯云的 [TSR 超分](https://github.com/tencentyun/TSR)。
+
+#### Android 端SDK授权申请
+
+具体授权所需信息请[点击这里](https://github.com/tencentyun/TSR/blob/main/Android%20%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97.md#111-%E6%8E%88%E6%9D%83%E6%89%80%E9%9C%80%E4%BF%A1%E6%81%AF) ，然后可以连续腾讯云客服提供对应的 sdk。
+
+#### iOS 端SDK授权申请
+
+具体授权所需信息请[点击这里](https://github.com/tencentyun/TSR/blob/main/iOS%20%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97.md#111-%E6%8E%88%E6%9D%83%E6%89%80%E9%9C%80%E4%BF%A1%E6%81%AF)，然后可以连续腾讯云客服提供对应的 sdk。
+
+#### 开通MPS控制台
+
+为了服务能够正常授权，您还需要在腾讯云官网开通【媒体处理（MPS）控制台】。开通链接：https://console.tencentcloud.com/mps/client_sdk/license。
+
+![企业微信截图_2aa134a4-7681-4de2-87c5-665fd09ee74a](./tsr_sdk_licence.png)
+
+超分套餐资费，请联系您的商务。
+
+#### Android 端超分配置指引
+
+1. 将 plugin_monet-release-x.x.x.aar 和 TsrSdk-Release-x.x.x.aar 2 个 aar 集成到项目中，其中TsrSdk-Release-x.x.x.aar 是您提供超分授权信息后获得的超分 SDK， 而 plugin_monet-release-x.x.x.aar 使用 github 项目中的即可。
+
+   ![sr_android_aar](./sr_android_aar.png)
+
+2. App工程添加权限
+
+   ```xml
+    <uses-permission android:name="android.permission.INTERNET"/>
+   
+    //如果 Android targetSdkVersion 大于等于 31，需要添加以下标签，否则专业版功能无法使用
+    <application>
+    <uses-native-library android:name="libOpenCL.so" android:required="false"/>
+    </application>
+   ```
+
+   
+
+3. 设置混淆规则
+
+​	在 proguard-rules.pro 文件中，将 SDK 相关类加入不混淆名单：
+
+```java
+-keep class com.tencent.** { *; }
+
+```
+
+#### iOS 端超分配置指引
+
+待完善，敬请期待。
+
+#### 超分运行指引
+
+**注意：请确保运行时使用的签名证书与申请超分时提供的信息一致，否则超分会授权失败。**
+
+1. 初始化设置超分信息
+
+   其中 appId, authId 是腾讯云签发的授权信息，srAlgorithmType 是超分算法类型，枚举值参考 FTXMonetConstant
+
+   ```dart
+   // 其中 appId, authId 是腾讯云签发的授权信息
+   FTUIPlayerKitPlugin.setMonetAppInfo(${appId}, ${authId}, FTXMonetConstant.SR_ALGORITHM_TYPE_STANDARD);
+   ```
+
+2. 通过FTUIPlayerVodStrategy#enableSuperResolution 开启超分配置
+
+   ```dart
+   FTUIPlayerVodStrategy _myVodStrategy = FTUIPlayerVodStrategy();
+   // 通过策略配置,开启超分
+   _myVodStrategy.enableSuperResolution = true; 
+   _shortPlayerController.setVodStrategy(_myVodStrategy);
+   ```
+
+   
+
 ## 使用指引
 
 1. 创建 TUI 短视频对象
@@ -130,6 +206,22 @@ FTUIPlayerConfig config = FTUIPlayerConfig(
 FTUIPlayerKitPlugin.setTUIPlayerConfig(config);
 ```
 
+#### setMonetAppInfo
+
+配置超分授权相关信息。
+
+```dart
+Future<void> setMonetAppInfo(int appId, int authId, int srAlgorithmType)
+```
+
+参数含义：
+
+| name            | type | desc                                                         |
+| --------------- | ---- | ------------------------------------------------------------ |
+| appId           | int  | 腾讯云账号的 appId                                           |
+| authId          | int  | 腾讯云超分授权的 authId                                      |
+| srAlgorithmType | int  | 超分支持的算法类型，取值如下：<br />标准模式：提供快速的超分辨率处理速度，适用于高实时性要求的场景。在这种模式下，可以实现显著的图像质量改善。 static const SR_ALGORITHM_TYPE_STANDARD = 1; <br />专业版-高质量模式：确保了高图像质量，同时需要更高的设备性能。它适合于有高图像质量要求的场景，并推荐在中高端智能手机上使用。 static const SR_ALGORITHM_TYPE_PROFESSIONAL_HIGH_QUALITY = 2; <br />专业版-快速模式：在牺牲一些图像质量的同时，确保了更快的处理速度。它适合于有高实时性要求的场景，并推荐在中档智能手机上使用。 static const SR_ALGORITHM_TYPE_PROFESSIONAL_FAST = 3; |
+
 ### FTUIPlayerShortController
 
 #### setModels
@@ -172,6 +264,7 @@ _playerController.setModels(dataList);
 | preferredResolution | int  | 视频播放偏好分辨率                                        |
 | progressInterval | int  | 视频进度回调间隔，默认 500毫秒，单位:ms                          |
 | renderMode | int  | 点播视频平铺模式，0 代表铺满容器，1 代表跟随视频比例调整                   |
+| enableSuperResolution | bool | 是否开启超分。true：开启； false：关闭。 |
 
 示例
 ```dart

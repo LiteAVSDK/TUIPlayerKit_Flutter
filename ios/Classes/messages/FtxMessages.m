@@ -158,7 +158,8 @@ static id GetNullableObjectAtIndex(NSArray<id> *array, NSInteger key) {
     maxBufferSize:(nullable NSNumber *)maxBufferSize
     preferredResolution:(nullable NSNumber *)preferredResolution
     progressInterval:(nullable NSNumber *)progressInterval
-    renderMode:(nullable NSNumber *)renderMode {
+    renderMode:(nullable NSNumber *)renderMode
+    enableSuperResolution:(nullable NSNumber *)enableSuperResolution {
   FTUIPlayerVodStrategyMsg* pigeonResult = [[FTUIPlayerVodStrategyMsg alloc] init];
   pigeonResult.preloadCount = preloadCount;
   pigeonResult.preDownloadSize = preDownloadSize;
@@ -167,6 +168,7 @@ static id GetNullableObjectAtIndex(NSArray<id> *array, NSInteger key) {
   pigeonResult.preferredResolution = preferredResolution;
   pigeonResult.progressInterval = progressInterval;
   pigeonResult.renderMode = renderMode;
+  pigeonResult.enableSuperResolution = enableSuperResolution;
   return pigeonResult;
 }
 + (FTUIPlayerVodStrategyMsg *)fromList:(NSArray<id> *)list {
@@ -178,6 +180,7 @@ static id GetNullableObjectAtIndex(NSArray<id> *array, NSInteger key) {
   pigeonResult.preferredResolution = GetNullableObjectAtIndex(list, 4);
   pigeonResult.progressInterval = GetNullableObjectAtIndex(list, 5);
   pigeonResult.renderMode = GetNullableObjectAtIndex(list, 6);
+  pigeonResult.enableSuperResolution = GetNullableObjectAtIndex(list, 7);
   return pigeonResult;
 }
 + (nullable FTUIPlayerVodStrategyMsg *)nullableFromList:(NSArray<id> *)list {
@@ -192,6 +195,7 @@ static id GetNullableObjectAtIndex(NSArray<id> *array, NSInteger key) {
     self.preferredResolution ?: [NSNull null],
     self.progressInterval ?: [NSNull null],
     self.renderMode ?: [NSNull null],
+    self.enableSuperResolution ?: [NSNull null],
   ];
 }
 @end
@@ -294,6 +298,27 @@ void SetUpFTUIPlayerKitPluginAPIWithSuffix(id<FlutterBinaryMessenger> binaryMess
         FlutterError *error;
         NSNumber *output = [api createShortEngineWithError:&error];
         callback(wrapResult(output, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:[NSString stringWithFormat:@"%@%@", @"dev.flutter.pigeon.ftuiplayer_kit.FTUIPlayerKitPluginAPI.setMonetAppInfo", messageChannelSuffix]
+        binaryMessenger:binaryMessenger
+        codec:nullGetFtxMessagesCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setMonetAppInfoAppId:authId:srAlgorithmType:error:)], @"FTUIPlayerKitPluginAPI api (%@) doesn't respond to @selector(setMonetAppInfoAppId:authId:srAlgorithmType:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray<id> *args = message;
+        NSInteger arg_appId = [GetNullableObjectAtIndex(args, 0) integerValue];
+        NSInteger arg_authId = [GetNullableObjectAtIndex(args, 1) integerValue];
+        NSInteger arg_srAlgorithmType = [GetNullableObjectAtIndex(args, 2) integerValue];
+        FlutterError *error;
+        [api setMonetAppInfoAppId:arg_appId authId:arg_authId srAlgorithmType:arg_srAlgorithmType error:&error];
+        callback(wrapResult(nil, error));
       }];
     } else {
       [channel setMessageHandler:nil];
@@ -565,6 +590,26 @@ void SetUpFTUIVodPlayerAPIWithSuffix(id<FlutterBinaryMessenger> binaryMessenger,
         double arg_time = [GetNullableObjectAtIndex(args, 0) doubleValue];
         FlutterError *error;
         [api seekToTime:arg_time error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:[NSString stringWithFormat:@"%@%@", @"dev.flutter.pigeon.ftuiplayer_kit.FTUIVodPlayerAPI.setStringOption", messageChannelSuffix]
+        binaryMessenger:binaryMessenger
+        codec:nullGetFtxMessagesCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setStringOptionValue:key:error:)], @"FTUIVodPlayerAPI api (%@) doesn't respond to @selector(setStringOptionValue:key:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray<id> *args = message;
+        NSString *arg_value = GetNullableObjectAtIndex(args, 0);
+        id arg_key = GetNullableObjectAtIndex(args, 1);
+        FlutterError *error;
+        [api setStringOptionValue:arg_value key:arg_key error:&error];
         callback(wrapResult(nil, error));
       }];
     } else {

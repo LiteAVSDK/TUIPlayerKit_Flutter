@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.tencent.liteav.monet.MonetPlugin;
 import com.tencent.qcloud.tuiplayer.core.TUIPlayerCore;
 import com.tencent.qcloud.tuiplayer.core.tools.TUIPlayerLog;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
@@ -42,6 +43,7 @@ public class FTUIShortEngine implements FTUIShortEngineObserver, FtxMessages.FTU
 
     @Override
     public void onRelease(int controllerId) {
+        TUIPlayerLog.i(TAG, "onRelease shortController, controllerId" + controllerId);
         if (mControllers.containsKey(controllerId)) {
             mControllers.remove(controllerId);
         } else {
@@ -51,6 +53,7 @@ public class FTUIShortEngine implements FTUIShortEngineObserver, FtxMessages.FTU
 
     @Override
     public void setConfig(@NonNull FtxMessages.FTUIPlayerConfigMsg msg) {
+        TUIPlayerLog.i(TAG, "called setConfig:" + msg);
         TUIPlayerCore.init(mContext, FTUITransformer.transformToTUIPlayerConfig(msg));
     }
 
@@ -58,6 +61,16 @@ public class FTUIShortEngine implements FTUIShortEngineObserver, FtxMessages.FTU
     @Override
     public Long createShortEngine() {
         int controllerId = createShortController();
+        TUIPlayerLog.i(TAG, "called createShortEngine, controllerId" + controllerId);
         return (long) controllerId;
+    }
+
+    @Override
+    public void setMonetAppInfo(@NonNull Long appId, @NonNull Long authId, @NonNull Long srAlgorithmType) {
+        TUIPlayerLog.i(TAG, "called setAppInfo,appId:" + appId);
+        long appIdInt = appId;
+        int authIdInt = authId.intValue();
+        int srIdInt = srAlgorithmType.intValue();
+        MonetPlugin.setAppInfo(appIdInt, authIdInt, srIdInt);
     }
 }

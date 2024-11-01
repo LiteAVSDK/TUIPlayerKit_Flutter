@@ -203,10 +203,22 @@
 }
 
 - (void)setVodStrategyMsg:(nonnull FTUIPlayerVodStrategyMsg *)msg error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
-    TUIPlayerVodStrategyModel* vodStrategyModel = [FTUITransformer transToVodStrategyOpenPreFromMsg:msg];
-    [self.vodStrategyManager setVideoStrategy:vodStrategyModel];
-    self.preloadManager.strategyManager = self.vodStrategyManager;
-    self.vodManager.strategyManager = self.vodStrategyManager;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        TUIPlayerVodStrategyModel* vodStrategyModel = [FTUITransformer transToVodStrategyOpenPreFromMsg:msg];
+        [self.vodStrategyManager setVideoStrategy:vodStrategyModel];
+        TUIPlayerVodStrategyManager *oldStartegyModel = self.vodStrategyManager;
+        self.preloadManager.strategyManager = self.vodStrategyManager;
+        self.vodManager.strategyManager = self.vodStrategyManager;
+//        if (oldStartegyModel && vodStrategyModel.superResolutionType == [oldStartegyModel getSuperResolutionType] && self.currentIndex < self.dataArray.count) {
+//            [self.vodManager.currentVodPlayer stopPlay];
+//            TUIPlayerDataModel *dataModel = self.dataArray[self.currentIndex];
+//            if ([dataModel isKindOfClass:[TUIPlayerVideoModel class]]) {
+//                [self.vodManager.currentVodPlayer startVodPlayWithModel:[dataModel asVodModel]];
+//            } else {
+//                TUILOGE(@"[setVodStrategyMsg] live is not impl")
+//            }
+//        }
+    });
 }
 
 - (nullable NSNumber *)startCurrentWithError:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {

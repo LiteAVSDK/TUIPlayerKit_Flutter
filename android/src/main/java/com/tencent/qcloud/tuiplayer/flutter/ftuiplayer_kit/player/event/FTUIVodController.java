@@ -116,6 +116,16 @@ public class FTUIVodController implements TUIVodViewListener, FtxMessages.FTUIVo
         }
     }
 
+    @Override
+    public void setStringOption(@NonNull String value, @NonNull Object key) {
+        if (null != mController && mController.getPlayer() instanceof ITUIVodPlayer) {
+            ITUIVodPlayer vodPlayer = (ITUIVodPlayer) mController.getPlayer();
+            vodPlayer.setStringOption(value, key);
+        } else {
+            TUIPlayerLog.e(TAG, "setStringOption failed, controller is not init");
+        }
+    }
+
     @NonNull
     @Override
     public Double getDuration() {

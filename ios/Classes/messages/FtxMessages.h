@@ -54,7 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
     maxBufferSize:(nullable NSNumber *)maxBufferSize
     preferredResolution:(nullable NSNumber *)preferredResolution
     progressInterval:(nullable NSNumber *)progressInterval
-    renderMode:(nullable NSNumber *)renderMode;
+    renderMode:(nullable NSNumber *)renderMode
+    enableSuperResolution:(nullable NSNumber *)enableSuperResolution;
 @property(nonatomic, strong, nullable) NSNumber * preloadCount;
 @property(nonatomic, strong, nullable) NSNumber * preDownloadSize;
 @property(nonatomic, strong, nullable) NSNumber * preloadBufferSizeInMB;
@@ -62,6 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nullable) NSNumber * preferredResolution;
 @property(nonatomic, strong, nullable) NSNumber * progressInterval;
 @property(nonatomic, strong, nullable) NSNumber * renderMode;
+@property(nonatomic, strong, nullable) NSNumber * enableSuperResolution;
 @end
 
 /// The codec used by all APIs.
@@ -71,6 +73,7 @@ NSObject<FlutterMessageCodec> *nullGetFtxMessagesCodec(void);
 - (void)setConfigMsg:(FTUIPlayerConfigMsg *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
 - (nullable NSNumber *)createShortEngineWithError:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setMonetAppInfoAppId:(NSInteger)appId authId:(NSInteger)authId srAlgorithmType:(NSInteger)srAlgorithmType error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void SetUpFTUIPlayerKitPluginAPI(id<FlutterBinaryMessenger> binaryMessenger, NSObject<FTUIPlayerKitPluginAPI> *_Nullable api);
@@ -105,6 +108,7 @@ extern void SetUpFTUIPlayerShortAPIWithSuffix(id<FlutterBinaryMessenger> binaryM
 - (void)setRateRate:(double)rate error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setMuteMute:(BOOL)mute error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)seekToTime:(double)time error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setStringOptionValue:(NSString *)value key:(id)key error:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
 - (nullable NSNumber *)getDurationWithError:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.

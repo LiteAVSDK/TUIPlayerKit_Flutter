@@ -10,6 +10,7 @@
 #import <stdatomic.h>
 #import <libkern/OSAtomic.h>
 #import "FTUIShortController.h"
+//#import <TXCMonetPlugin/TXCMonetPluginManager.h>
 
 static atomic_int atomicId = 0;
 
@@ -57,6 +58,11 @@ static atomic_int atomicId = 0;
     config.enableLog = msg.enableLog;
     [[TUIPlayerCore shareInstance] setPlayerConfig:config];
     [TXLiveBase setLicenceURL:msg.licenseUrl key:msg.licenseKey];
+}
+
+- (void)setMonetAppInfoAppId:(NSInteger)appId authId:(NSInteger)authId srAlgorithmType:(NSInteger)srAlgorithmType error:(FlutterError * _Nullable __autoreleasing *)error {
+//    NSString *appIdStr = [NSString stringWithFormat:@"%@", @(appId)];
+//    [[TXCMonetPluginManager sharedManager] setAppInfo:appIdStr authId:(int)authId algorithmType:(int)srAlgorithmType];
 }
 
 @end
