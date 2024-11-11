@@ -55,15 +55,20 @@
 
 ///视频播放设置策略管理
 @property (nonatomic, strong) TUIPlayerVodStrategyManager *strategyManager;
-
-@property (nonatomic, assign) BOOL isPrePlay; ///是否已经预播放
-@property (nonatomic, assign) BOOL isFirstFrame;///是否已经回调首帧
+///是否已经预播放
+@property (nonatomic, assign) BOOL isPrePlay;
+///是否已经回调首帧
+@property (nonatomic, assign) BOOL isFirstFrame;
 @property (nonatomic, copy) void (^firstFrameCallBack)(BOOL isFirstFrame);
-@property (nonatomic, assign) TUITXVodPlayerStatus status;     ///状态
-@property (nonatomic, assign) BOOL isPlaying;       ///是否正在播放
-@property (nonatomic, assign) BOOL loop;            ///是否循环播放
+///状态
+@property (nonatomic, assign) TUITXVodPlayerStatus status;
+///是否正在播放
+@property (nonatomic, assign) BOOL isPlaying;
+///是否循环播放
+@property (nonatomic, assign) BOOL loop;
 @property (nonatomic, assign) BOOL isAutoPlay;
-@property (nonatomic, assign) BOOL enableHWAcceleration; ///是否开启硬件加速
+///是否开启硬件加速
+@property (nonatomic, assign) BOOL enableHWAcceleration;
 /**
  * ADD/Remove delegate
  */
@@ -75,6 +80,10 @@
  */
 - (void)startVodPlay:(NSString *)url;
 - (void)startVodPlayWithModel:(TUIPlayerVideoModel *)model;
+/**
+ * 重新播放
+ */
+- (void)reStartVodPlay;
 /**
  * 设置播放器显示view
  * @param weiget view

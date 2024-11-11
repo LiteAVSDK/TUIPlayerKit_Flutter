@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)videoPreLoadStateWithModel:(TUIPlayerVideoModel *)videoModel;
 
 @end
-/// 播放器缓存管理
+///播放器缓存管理
 @interface TUIPlayerVodPreLoadManager : NSObject
 
 @property (nonatomic, weak)id <TUIPlayerVodPreLoadManagerDelegate>delegate; ///代理
@@ -45,6 +45,26 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param  videoModels  视频数据模型
  */
 - (void)removePlayerModels:(NSArray<TUIPlayerDataModel *> *)videoModels;
+
+/**
+ *  插入视频数据模型：从index开始插入一组数据
+ *
+ *  @discussion  插入视频数据模型
+ *  @param  videoModels  视频数据模型
+ *  @param  index  插入的位置
+ */
+
+- (void)insertVideoModels:(NSArray<TUIPlayerDataModel *> *)videoModels atIndex:(NSInteger)index;
+
+/**
+ *  替换视频数据模型：从index开始替换一组数据
+ *
+ *  @discussion  替换视频数据模型
+ *  @param  videoModels  视频数据模型
+ *  @param  index  替换的位置
+ */
+- (void)replaceVideoModels:(NSArray<TUIPlayerDataModel *> *)videoModels fromIndex:(NSInteger)index;
+
 
 /**
  *  设置正在播放的数据模型

@@ -1,0 +1,68 @@
+[
+  {
+    "metadataOutputVersion" : "3.0",
+    "storagePrecision" : "Float16",
+    "outputSchema" : [
+      {
+        "formattedType" : "Image (Grayscale 1 × 1)",
+        "hasSizeFlexibility" : "1",
+        "shortDescription" : "",
+        "sizeRange" : "[[1, -1], [1, -1]]",
+        "width" : "1",
+        "type" : "Image",
+        "isColor" : "0",
+        "height" : "1",
+        "sizeFlexibility" : "1... × 1...",
+        "colorspace" : "Grayscale",
+        "name" : "output_image",
+        "isOptional" : "0"
+      }
+    ],
+    "modelParameters" : [
+
+    ],
+    "specificationVersion" : 6,
+    "mlProgramOperationTypeHistogram" : {
+      "Cast" : 2,
+      "Conv" : 4,
+      "LeakyRelu" : 3,
+      "PixelShuffle" : 1,
+      "Add" : 1
+    },
+    "computePrecision" : "Mixed (Float16, Float32, Int32)",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "12.0",
+      "tvOS" : "15.0",
+      "watchOS" : "8.0",
+      "iOS" : "15.0",
+      "macCatalyst" : "15.0"
+    },
+    "modelType" : {
+      "name" : "MLModelType_mlProgram"
+    },
+    "userDefinedMetadata" : {
+      "com.github.apple.coremltools.source_dialect" : "TorchScript",
+      "com.github.apple.coremltools.source" : "torch==2.2.0",
+      "com.github.apple.coremltools.version" : "7.2"
+    },
+    "inputSchema" : [
+      {
+        "formattedType" : "Image (Grayscale 960 × 540)",
+        "hasSizeFlexibility" : "1",
+        "shortDescription" : "",
+        "sizeRange" : "[[1, 4096], [1, 4096]]",
+        "width" : "960",
+        "type" : "Image",
+        "isColor" : "0",
+        "height" : "540",
+        "sizeFlexibility" : "1...4096 × 1...4096",
+        "colorspace" : "Grayscale",
+        "name" : "input_image",
+        "isOptional" : "0"
+      }
+    ],
+    "generatedClassName" : "eh_y4",
+    "method" : "predict"
+  }
+]

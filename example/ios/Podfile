@@ -33,6 +33,8 @@ target 'Runner' do
   
   pod 'TUIPlayerShortVideo/Player_Premium' ,:path => '../../ios/TUIPlayerShortVideoSDK/'
   pod 'TUIPlayerCore/Player_Premium' ,:path => '../../ios/TUIPlayerCoreSDK/'
+  pod 'TXCMonetPlugin' ,:path => '../../ios/TXCMonetPlugin/'
+  pod 'tsrClient' ,:path => '../../ios/tsrClient/'
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do

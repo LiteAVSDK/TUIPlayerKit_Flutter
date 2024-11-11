@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface TUIPlayerLiveStrategyManager : NSObject
+@property (nonatomic, getter=isEnableLastPrePlay, readonly) BOOL enableLastPrePlay;
 /**
  *  添加代理
  *  @param  delegate 代理对象
@@ -35,14 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (TUIPlayerLiveStrategyModel *)getLiveStratey;
 /**
  *  设置是否预播放上一个视频
- *  @param  isLastPrePlay 是否预播放上一个视频
+ *  @param enableLastPrePlay 是否预播放上一个视频
  */
-- (void)setIsLastPrePlay:(BOOL)isLastPrePlay;
+- (void)setEnableLastPrePlay:(BOOL)enableLastPrePlay;
 /**
  *  获取是否预播放上一个视频
  *  @return  是否预播放上一个视频
  */
-- (BOOL)getIsLastPrePlay;
+- (BOOL)isEnableLastPrePlay;
 /**
  *  设置画面填充模式
  *  @param  mode 画面填充模式

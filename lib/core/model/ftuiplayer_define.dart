@@ -354,7 +354,7 @@ class FTUIPlayerVodStrategy {
 
   /// 0 : fill view container
   /// 1 : adjust video resolution
-  int renderMode = 0;
+  int renderMode = 1;
 
   /// enable SuperResolution
   bool enableSuperResolution = false;

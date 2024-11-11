@@ -11,9 +11,12 @@
 @class TUIPlayerDataModel;
 /// 播放模式
 typedef NS_ENUM(NSUInteger, TUIPlayMode) {
-    TUIPlayModeOneLoop,       /// 单个循环，当前视频重复播放
-    TUIPlayModeListLoop,      /// 列表循环，自动播放下一个视频，列表播放完毕后从第一个继续播放
-    TUIPlayModeCustomLoop     /// 自定义循环，当前视频播放完毕后停止
+    /// 单个循环，当前视频重复播放
+    TUIPlayModeOneLoop,
+    /// 列表循环，自动播放下一个视频，列表播放完毕后从第一个继续播放
+    TUIPlayModeListLoop,
+    /// 自定义循环，当前视频播放完毕后停止
+    TUIPlayModeCustomLoop
 };
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,7 +41,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)scrollToVideoIndex:(NSInteger )videoIndex
                 videoModel:(TUIPlayerDataModel *)videoModel;
-
+/**
+ * 在滑动到下一个页面前触发，返回上一个页面的数据模型，可以在这里做一些收尾工作
+ * @param lastModel 上一条数据模型
+ */
+- (void)willScrollToNextPageWithLastModel:(TUIPlayerDataModel*)lastModel;
 /**
  * 需要加载下一页
  * 回调时机跟TUIPlayerVodStrategyModel/mPreloadConcurrentCount相关
@@ -94,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 ///播放器窗口
 @interface TUIShortVideoView : UIView
-/// 首次加载是否自动播放第一个视频，默认YES
+///首次加载是否自动播放第一个视频，默认YES
 @property (nonatomic, assign) BOOL isAutoPlay;
 ///视频数据模型
 @property (nonatomic, strong, readonly) NSMutableArray<TUIPlayerDataModel *> *videos;

@@ -56,10 +56,6 @@
     return NO;
 }
 
-- (void)cellPause { 
-    
-}
-
 - (void)cellResume { 
     
 }
@@ -93,7 +89,11 @@
     return @(0);
 }
 
-- (void)pauseWithError:(FlutterError * _Nullable __autoreleasing * _Nonnull)error { 
+- (void)cellPause {
+
+}
+
+- (void)pauseWithError:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
     if (self.curPlayer) {
         [self.curPlayer pausePlay];
     }
@@ -134,7 +134,7 @@
     [self.platformObserver onDispose:self.viewId];
 }
 
-- (void)setStringOptionValue:(nonnull NSString *)value key:(nonnull id)key error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error { 
+- (void)setStringOptionValue:(nonnull NSString *)value key:(nonnull id)key error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
     // ios need string value
     NSString *str = [NSString stringWithFormat:@"%@", key];
     [self.curPlayer setExtentOptionInfo:@{value : str}];

@@ -36,6 +36,7 @@ class _MyAppState extends State<MyApp> {
     FTUIPlayerConfig config = FTUIPlayerConfig(
         licenseUrl: LICENSE_URL,
         licenseKey: LICENSE_KEY);
+    config.enableLog = true;
     FTUIPlayerKitPlugin.setTUIPlayerConfig(config);
     FTUIPlayerKitPlugin.setMonetAppInfo(${appId}, ${authId}, FTXMonetConstant.SR_ALGORITHM_TYPE_STANDARD);
   }

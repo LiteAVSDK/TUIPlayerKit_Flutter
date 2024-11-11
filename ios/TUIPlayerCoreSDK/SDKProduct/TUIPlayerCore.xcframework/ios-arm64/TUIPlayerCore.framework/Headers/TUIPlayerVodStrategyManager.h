@@ -6,11 +6,15 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TUIPlayerVodStrategyManagerDelegate <NSObject>
 
 - (void)configDidChange:(TUIPlayerVodStrategyModel *)config;
+- (void)onSwitchResolution:(long)switchResolution;
+// 超分类型变化
+- (void)onSuperResolutionTypeChanges:(TUI_Enume_Type_SuperResolution)superResolution;
 
 @end
 
 ///播放策略管理
 @interface TUIPlayerVodStrategyManager : NSObject
+@property (nonatomic, getter=isEnableLastPrePlay) BOOL enableLastPrePlay;
 
 /**
  *  添加代理
@@ -205,14 +209,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (float)getAudioNormalization;
 /**
  *  设置是否预播放上一个视频
- *  @param  isLastPrePlay 是否预播放上一个视频
+ *  @param  enableLastPrePlay 是否预播放上一个视频
  */
-- (void)setIsLastPrePlay:(BOOL)isLastPrePlay;
+- (void)setEnableLastPrePlay:(BOOL)enableLastPrePlay;
 /**
- *  获取是否预播放上一个视频
- *  @return  是否预播放上一个视频
+ *  获取是否开启预播放上一个视频
+ *  @return  是否开启预播放上一个视频
  */
-- (BOOL)getIsLastPrePlay;
+- (BOOL)isEnableLastPrePlay;
 /**
  * 设置超分开关状态
  * @param superResolutionType 超分开关状态

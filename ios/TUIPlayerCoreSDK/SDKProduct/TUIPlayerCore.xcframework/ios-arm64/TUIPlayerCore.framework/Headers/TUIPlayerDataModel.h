@@ -4,27 +4,33 @@
 #import <Foundation/Foundation.h>
 @class TUIPlayerVideoModel;
 @class TUIPlayerLiveModel;
+/**
+ VOD    ->  0
+ Live   ->  1
+ custom ->  2
+ */
 typedef NS_ENUM(NSInteger, TUI_MODEL_TYPE) {
 
-    /// 视频
-    /// VOD
+    ///视频
+    ///VOD
     TUI_MODEL_TYPE_VOD = 0,
 
-    /// 直播
-    /// Live
+    ///直播
+    ///Live
     TUI_MODEL_TYPE_LIVE = 1,
 
-    /// 自定义类型
-    /// custom
+    ///自定义类型
+    ///custom
     TUI_MODEL_TYPE_CUSTOM = 2,
 
 };
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TUIPlayerDataModel : NSObject<NSCopying>
-
-@property (nonatomic, assign, readonly)TUI_MODEL_TYPE modelType; ///模型类型 
-@property (nonatomic, strong) id extInfo;              /// 业务数据
+///模型类型
+@property (nonatomic, assign, readonly)TUI_MODEL_TYPE modelType;
+///业务数据
+@property (nonatomic, strong) id extInfo;
 @property (nonatomic, copy) void (^ onExtInfoChangedBlock) (id extInfo);///extInfo信息改变block回调
 
 /**

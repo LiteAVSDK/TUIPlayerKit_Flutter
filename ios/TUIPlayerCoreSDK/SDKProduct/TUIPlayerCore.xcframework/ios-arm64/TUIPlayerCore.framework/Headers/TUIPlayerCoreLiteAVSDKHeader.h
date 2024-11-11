@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Tencent. All rights reserved.
+// Copyright (c) 2022 Tencent. All rights reserved.
 
 #ifndef TUIPlayerCoreLiteAVSDKHeader_h
 #define TUIPlayerCoreLiteAVSDKHeader_h

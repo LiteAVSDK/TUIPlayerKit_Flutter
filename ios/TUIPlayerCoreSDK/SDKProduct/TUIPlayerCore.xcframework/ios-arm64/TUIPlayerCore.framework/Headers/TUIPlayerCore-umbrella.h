@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "TUIMediaDataManager+Private.h"
+#import "TUIMediaDataManager.h"
+#import "TUIMediaManager.h"
 #import "TUIPlayerBitrateItem.h"
 #import "TUIPlayerConfig.h"
 #import "TUIPlayerCore.h"
@@ -21,10 +24,11 @@
 #import "TUIPlayerLiveStrategyManager.h"
 #import "TUIPlayerLiveStrategyModel.h"
 #import "TUIPlayerLog.h"
-#import "TUIPlayerResumeManager.h"
+#import "TUIPlayerRecordManager.h"
 #import "TUIPlayerSubtitleModel.h"
 #import "TUIPlayerVideoConfig.h"
 #import "TUIPlayerVideoConfigManager.h"
+#import "TUIPlayerVideoModel+PreloadState.h"
 #import "TUIPlayerVideoModel.h"
 #import "TUIPlayerVideoPreloadState.h"
 #import "TUIPlayerVodManager.h"

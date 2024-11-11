@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/TUIPlayerShortVideoControl.h</key>
 		<data>
-		mGsxxCjYILOrHx2iug5pefieKIM=
+		3ux9jniykVrqX6EQ0fIOF6Rb1f8=
 		</data>
 		<key>Headers/TUIPlayerShortVideoCustomControl.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/TUIPlayerViewCommonDefine.h</key>
 		<data>
-		ptK3eHP5p3TdBmSSB4su8C2Ya1A=
+		9lz+URbBql1FKQ/QE5KHPawbHEI=
 		</data>
 		<key>Headers/TUIPullUpRefreshControl.h</key>
 		<data>
@@ -58,7 +58,7 @@
 		</data>
 		<key>Headers/TUIShortVideoDataManager.h</key>
 		<data>
-		LB0A/ulbnRqymkTI/uCb7YxxxaM=
+		mlE4f7sVQkkgwIIK7yyVYAn6c/I=
 		</data>
 		<key>Headers/TUIShortVideoItemCustomCell.h</key>
 		<data>
@@ -82,11 +82,11 @@
 		</data>
 		<key>Headers/TUIShortVideoView+SDKVersion.h</key>
 		<data>
-		ozBhDu6EqiKk3Iq1fVf0n0xuHpY=
+		x2/tdLR/vn+WMRJ5Ug/VXh0o0n8=
 		</data>
 		<key>Headers/TUIShortVideoView.h</key>
 		<data>
-		OdJswI+vYsE1XhUeth0Lw7MiuLQ=
+		BOLst01zgHxL0FfGB2v5mnT+5AQ=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -114,11 +114,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			mGsxxCjYILOrHx2iug5pefieKIM=
+			3ux9jniykVrqX6EQ0fIOF6Rb1f8=
 			</data>
 			<key>hash2</key>
 			<data>
-			hbjdOsTvEqpoBQTot7KA55CLGiX8iXxli/fpaMvv1os=
+			UANdFBLC6VZa3xee771hn878gv+JKbq2mznho/F3SYc=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerShortVideoCustomControl.h</key>
@@ -213,11 +213,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ptK3eHP5p3TdBmSSB4su8C2Ya1A=
+			9lz+URbBql1FKQ/QE5KHPawbHEI=
 			</data>
 			<key>hash2</key>
 			<data>
-			p+m503gjvqQhRn1g0g8o3NhgVX4In5QYc5TUd+OW9uA=
+			JkwmiRI5bLeJUURK/iBOYCpZekI/6UAHy+ne6tQCh1I=
 			</data>
 		</dict>
 		<key>Headers/TUIPullUpRefreshControl.h</key>
@@ -246,11 +246,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LB0A/ulbnRqymkTI/uCb7YxxxaM=
+			mlE4f7sVQkkgwIIK7yyVYAn6c/I=
 			</data>
 			<key>hash2</key>
 			<data>
-			s4oYdPyklLumGjYpj4L4fIKZ//2F9E2phnCxJpBvuSQ=
+			qGoDMVeUOn9rt7K9496eo+1oqPCoA5KXiaA17md31ZA=
 			</data>
 		</dict>
 		<key>Headers/TUIShortVideoItemCustomCell.h</key>
@@ -312,22 +312,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ozBhDu6EqiKk3Iq1fVf0n0xuHpY=
+			x2/tdLR/vn+WMRJ5Ug/VXh0o0n8=
 			</data>
 			<key>hash2</key>
 			<data>
-			AuHuJuPf4Bj8c4Hl386Mz1eMqMElSq2CEBKCil3y/5s=
+			XYPRWxkZpw0hgYboPpSTiOcb1M91C0q54gdJIFPpI5c=
 			</data>
 		</dict>
 		<key>Headers/TUIShortVideoView.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			OdJswI+vYsE1XhUeth0Lw7MiuLQ=
+			BOLst01zgHxL0FfGB2v5mnT+5AQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			Jq76rt9MmJg7viuXtwqTw7ljfNH9OYVIrirg8PgxgHI=
+			AZ2ut4PUnQ5Rl23BSzG29GPiKhudGkNgjgcxFAYepng=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

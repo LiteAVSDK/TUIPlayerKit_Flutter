@@ -40,5 +40,12 @@ Pod::Spec.new do |s|
     ss.dependency 'SDWebImage'
     ss.dependency 'TUIPlayerCore/Professional'
   end
-
+  s.subspec 'Professional_player_premium' do |ss|
+    ss.resource = 'TUIPlayerShortVideo.bundle'
+    ss.vendored_frameworks = 'SDKProduct/TUIPlayerShortVideo.xcframework'
+    ss.resource = 'SDKProduct/TUIPlayerShortVideo.xcframework/TUIPlayerShortVideo-Privacy.bundle'
+    ss.dependency 'Masonry'
+    ss.dependency 'SDWebImage'
+    ss.dependency 'TUIPlayerCore/Professional_player_premium'
+  end
 end

@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, TUITXVodPlayerStatus) {
     TUITXVodPlayerStatusPaused   = 4,  // 暂停
     TUITXVodPlayerStatusEnded    = 5,  // 播放完成
     TUITXVodPlayerStatusError    = 6,  // 错误
+    TUITXVodPlayerStatusLoopCompleted    = 7,  // 已经结束一次(只在循环播放使用)
 };
 
 /**
@@ -44,11 +45,11 @@ typedef NS_ENUM(NSInteger, TUI_VOD_PLAYER_SUBTITLE_MIME_TYPE) {
  * 画面填充模式
  */
 typedef NS_ENUM(NSInteger, TUI_Enum_Type_RenderMode) {
-  ///< 未知。
+  /// 未知。
   TUI_RENDER_MODE_FILL_NONE = -1,
-  ///< 图像铺满屏幕，不留黑边，如果图像宽高比不同于屏幕宽高比，部分画面内容会被裁剪掉。
+  /// 图像铺满屏幕，不留黑边，如果图像宽高比不同于屏幕宽高比，部分画面内容会被裁剪掉。
   TUI_RENDER_MODE_FILL_SCREEN = 0,
-  ///< 图像适应屏幕，保持画面完整，但如果图像宽高比不同于屏幕宽高比，会有黑边的存在。
+  /// 图像适应屏幕，保持画面完整，但如果图像宽高比不同于屏幕宽高比，会有黑边的存在。
   TUI_RENDER_MODE_FILL_EDGE = 1,
 };
 /**
@@ -92,6 +93,6 @@ typedef NS_ENUM(NSInteger, TUI_Enum_Type_ResumModel) {
  */
 typedef NS_ENUM (NSInteger, TUI_Enume_Type_SuperResolution) {
     TUI_SuperResolution_NONE = 0, /// 无超分
-    TUI_SuperResolution_ASR = 1  /// 超分
+    TUI_SuperResolution_TSR = 2,  /// TSR超分
 };
 #endif /* TUIPlyerCoreSDKTypeDef_h */

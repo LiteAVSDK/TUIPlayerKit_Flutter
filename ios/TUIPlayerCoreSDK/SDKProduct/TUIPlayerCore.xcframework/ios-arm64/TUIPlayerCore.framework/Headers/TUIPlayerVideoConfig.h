@@ -4,14 +4,28 @@
 #import <Foundation/Foundation.h>
 #import "TUIPlayerVodStrategyModel.h"
 
-/// 视频设置
-@interface TUIPlayerVideoConfig : NSObject<NSCopying>
+@class TUIPlayerVideoConfig;
 
-@property (nonatomic, assign) float preDownloadSize; /// 预下载大小，单位MB，默认1MB
-@property (nonatomic, assign) long mPreferredResolution;  /// 偏好分辨率
-@property (nonatomic, assign) long switchResolution;///主动切换的分辨率
-@property (nonatomic, assign) TUI_Enum_Type_RenderMode renderMode;///视频缩放模式
-@property (nonatomic, strong) NSDictionary *headers; /// 自定义 HTTP Headers
+@protocol TUIPlayerVideoConfigDelegate <NSObject>
+
+-(void)onConfigSwitchResolution: (TUIPlayerVideoConfig *) config;
+
+@end
+
+///视频设置
+@interface TUIPlayerVideoConfig : NSObject<NSCopying>
+/// TUIPlayerVideoConfigDelegate代理
+@property (nonatomic, weak) id<TUIPlayerVideoConfigDelegate> delegate;
+///预下载大小，单位MB，默认1MB
+@property (nonatomic, assign) float preDownloadSize;
+///偏好分辨率
+@property (nonatomic, assign) long mPreferredResolution;
+///主动切换的分辨率
+@property (nonatomic, assign) long switchResolution;
+///视频缩放模式
+@property (nonatomic, assign) TUI_Enum_Type_RenderMode renderMode;
+///自定义 HTTP Headers
+@property (nonatomic, strong) NSDictionary *headers;
 @end
 
 

@@ -70,7 +70,11 @@ FTUIPlayerKit 的超分使用的腾讯云的 [TSR 超分](https://github.com/ten
 
 #### 开通MPS控制台
 
-为了服务能够正常授权，您还需要在腾讯云官网开通【媒体处理（MPS）控制台】。开通链接：https://console.tencentcloud.com/mps/client_sdk/license。
+为了服务能够正常授权，您还需要在腾讯云官网开通【媒体处理（MPS）控制台】。
+
+中国站开通链接：https://console.cloud.tencent.com/mps。
+
+国际站开通链接：https://console.tencentcloud.com/mps/client_sdk/license。
 
 ![企业微信截图_2aa134a4-7681-4de2-87c5-665fd09ee74a](./tsr_sdk_licence.png)
 
@@ -93,7 +97,6 @@ FTUIPlayerKit 的超分使用的腾讯云的 [TSR 超分](https://github.com/ten
     </application>
    ```
 
-   
 
 3. 设置混淆规则
 
@@ -106,7 +109,14 @@ FTUIPlayerKit 的超分使用的腾讯云的 [TSR 超分](https://github.com/ten
 
 #### iOS 端超分配置指引
 
-待完善，敬请期待。
+1. 将sdk 目录下 TXCMonetPlugin 和 tsrClient 两个库引入到自身目录中，随后在自身项目中进行本地集成。其中 tsrClient 是您提供超分授权信息后获得的超分 SDK， 而 TXCMonetPlugin 使用 github 项目中的即可，以下代码为 cocoasPod 本地集成示例:
+```objectivec
+pod 'TXCMonetPlugin' ,:path => '../../ios/TXCMonetPlugin/'
+pod 'tsrClient' ,:path => '../../ios/tsrClient/'
+```
+2. 在 Xcode 中，项目的 `General` 标签下，找到 `Framework,Libraries,and Embedded Content` 分栏，添加 `CoreML.framework`,如下图示例：
+
+![coreML_ios.png](coreML_ios.png)
 
 #### 超分运行指引
 

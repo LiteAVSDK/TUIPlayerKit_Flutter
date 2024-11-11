@@ -31,4 +31,10 @@ Pod::Spec.new do |s|
     ss.resource = 'SDKProduct/TUIPlayerCore.xcframework/TUIPlayerCore-Privacy.bundle'
     ss.dependency 'TXLiteAVSDK_Professional','>= 11.4.0'
   end
+  s.subspec 'Professional_player_premium' do |ss|
+    ss.source_files = 'TUIPlayerCore/Classes/Core/**/*'
+    ss.public_header_files = 'TUIPlayerCore/Classes/Core/Public/**/*'
+    ss.resource = 'TUIPlayerCore/Assets/TUIPlayerCore-Privacy.bundle'
+    ss.dependency 'TXLiteAVSDK_Professional_Player_Premium'
+  end
 end

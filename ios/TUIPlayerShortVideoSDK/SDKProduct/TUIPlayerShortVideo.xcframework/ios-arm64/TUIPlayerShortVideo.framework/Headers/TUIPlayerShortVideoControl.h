@@ -102,7 +102,7 @@
 
 #pragma mark - Player
 /**
- * 获取播放器对象
+ * 获取播放器对象，保存在self中
  */
 - (void)getPlayer:(TUITXVodPlayer *)player;
 

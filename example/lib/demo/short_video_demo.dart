@@ -117,11 +117,15 @@ class _ShortVideoDemoState extends State<ShortVideoDemo> with WidgetsBindingObse
                     shape: WidgetStateProperty.all<OutlinedBorder>(
                       const CircleBorder(),
                     ),
+                    padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+                      const EdgeInsets.all(20)
+                    ),
                   ),
                   child: const Text(
                       "SR",
                     style: TextStyle(
-                      color: Colors.black
+                      color: Colors.black,
+                      fontSize: 20
                     ),
                   ),
                 ),

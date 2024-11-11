@@ -6,8 +6,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TUIPlayerLiveModel : TUIPlayerDataModel <NSCopying>
-@property (nonatomic, copy) NSString *liveUrl;        /// 直播Url
-@property (nonatomic, copy) NSString *coverPictureUrl; /// 封面图
+///直播Url
+@property (nonatomic, copy) NSString *liveUrl;
+///封面图
+@property (nonatomic, copy) NSString *coverPictureUrl;
 
 @end
 

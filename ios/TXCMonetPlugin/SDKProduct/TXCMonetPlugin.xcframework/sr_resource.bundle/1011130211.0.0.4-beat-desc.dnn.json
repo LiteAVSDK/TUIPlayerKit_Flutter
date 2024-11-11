@@ -1,0 +1,27 @@
+{
+  "model_config": {
+    "monet_tvm_sr_version" : 1,
+    "shapes": [
+      {
+        "width": 864,
+        "height": 486
+      },
+      {
+        "width": 864,
+        "height": 400
+      },
+      {
+        "width": 864,
+        "height": 370
+      }
+    ]
+  },
+  "engine_config": {
+    "enable_gpu": false,
+    "enable_npu": true,
+    "verbose": false,
+    "precision_level": 3,
+    "num_threads": 2,
+    "power_save_level": 3
+  }
+}

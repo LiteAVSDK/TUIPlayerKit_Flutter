@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param msg       警告信息。
  * @param extraInfo 扩展信息。
  */
-- (void)onWarning:(TUITXLivePlayer *)player 
+- (void)onWarning:(TUITXLivePlayer *)player
              code:(V2TXLiveCode)code
           message:(NSString *)msg
         extraInfo:(NSDictionary *)extraInfo;
@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param width     视频宽。
  * @param height    视频高。
  */
-- (void)onVideoResolutionChanged:(TUITXLivePlayer *)player 
+- (void)onVideoResolutionChanged:(TUITXLivePlayer *)player
                            width:(NSInteger)width
                           height:(NSInteger)height;
 
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param player    回调该通知的播放器对象。
  * @param extraInfo 扩展信息。
  */
-- (void)onConnected:(TUITXLivePlayer *)player 
+- (void)onConnected:(TUITXLivePlayer *)player
           extraInfo:(NSDictionary *)extraInfo;
 
 /**
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param firstPlay 第一次播放标志。
  * @param extraInfo 扩展信息。
  */
-- (void)onVideoPlaying:(TUITXLivePlayer *)player 
+- (void)onVideoPlaying:(TUITXLivePlayer *)player
              firstPlay:(BOOL)firstPlay
              extraInfo:(NSDictionary *)extraInfo;
 
@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param firstPlay 第一次播放标志。
  * @param extraInfo 扩展信息。
  */
-- (void)onAudioPlaying:(TUITXLivePlayer *)player 
+- (void)onAudioPlaying:(TUITXLivePlayer *)player
              firstPlay:(BOOL)firstPlay
              extraInfo:(NSDictionary *)extraInfo;
 
@@ -90,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param player    回调该通知的播放器对象。
  * @param extraInfo 扩展信息。
  */
-- (void)onVideoLoading:(TUITXLivePlayer *)player 
+- (void)onVideoLoading:(TUITXLivePlayer *)player
              extraInfo:(NSDictionary *)extraInfo;
 
 /**
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param volume 音量大小。
  * @note  调用 {@link enableVolumeEvaluation} 开启播放音量大小提示之后，会收到这个回调通知。
  */
-- (void)onPlayoutVolumeUpdate:(TUITXLivePlayer *)player 
+- (void)onPlayoutVolumeUpdate:(TUITXLivePlayer *)player
                        volume:(NSInteger)volume;
 
 /**
@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param player     回调该通知的播放器对象。
  * @param statistics 播放器统计数据 {@link V2TXLivePlayerStatistics}。
  */
-- (void)onStatisticsUpdate:(TUITXLivePlayer *)player 
+- (void)onStatisticsUpdate:(TUITXLivePlayer *)player
                 statistics:(V2TXLivePlayerStatistics *)statistics;
 
 /**
@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param player 回调该通知的播放器对象。
  * @param image  已截取的视频画面。
  */
-- (void)onSnapshotComplete:(TUITXLivePlayer *)player 
+- (void)onSnapshotComplete:(TUITXLivePlayer *)player
                      image:(nullable TXImage *)image;
 
 /**
@@ -138,7 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param videoFrame 视频帧数据 {@link V2TXLiveVideoFrame}。
  * @note  需要您调用 {@link enableObserveVideoFrame} 开启回调开关。
  */
-- (void)onRenderVideoFrame:(TUITXLivePlayer *)player 
+- (void)onRenderVideoFrame:(TUITXLivePlayer *)player
                      frame:(V2TXLiveVideoFrame *)videoFrame;
 
 /**
@@ -148,7 +148,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param audioFrame 音频帧数据 {@link V2TXLiveAudioFrame}。
  * @note  需要您调用 {@link enableObserveAudioFrame} 开启回调开关。请在当前回调中使用 audioFrame 的 data。
  */
-- (void)onPlayoutAudioFrame:(TUITXLivePlayer *)player 
+- (void)onPlayoutAudioFrame:(TUITXLivePlayer *)player
                       frame:(V2TXLiveAudioFrame *)audioFrame;
 
 /**
@@ -159,7 +159,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param payloadType    回调数据的SEI payloadType。
  * @param data           数据。
  */
-- (void)onReceiveSeiMessage:(TUITXLivePlayer *)player 
+- (void)onReceiveSeiMessage:(TUITXLivePlayer *)player
                 payloadType:(int)payloadType
                        data:(NSData *)data;
 
@@ -171,7 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param url    切换的播放地址。
  * @param code   状态码，0：成功，-1：切换超时，-2：切换失败，服务端错误，-3：切换失败，客户端错误。
  */
-- (void)onStreamSwitched:(TUITXLivePlayer *)player 
+- (void)onStreamSwitched:(TUITXLivePlayer *)player
                      url:(NSString *)url
                     code:(NSInteger)code;
 
@@ -183,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param state     画中画的状态。
  * @param extraInfo 扩展信息。
  */
-- (void)onPictureInPictureStateUpdate:(TUITXLivePlayer *)player 
+- (void)onPictureInPictureStateUpdate:(TUITXLivePlayer *)player
                                 state:(V2TXLivePictureInPictureState)state
                               message:(NSString *)msg
                             extraInfo:(NSDictionary *)extraInfo;
@@ -202,7 +202,7 @@ NS_ASSUME_NONNULL_BEGIN
  *               - -8：录制目录无写入权限，请检查目录权限问题。
  * @param storagePath 录制的文件地址。
  */
-- (void)onLocalRecordBegin:(TUITXLivePlayer *)player 
+- (void)onLocalRecordBegin:(TUITXLivePlayer *)player
                    errCode:(NSInteger)errCode
                storagePath:(NSString *)storagePath;
 
@@ -215,7 +215,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param durationMs   录制时长。
  * @param storagePath  录制的文件地址。
  */
-- (void)onLocalRecording:(TUITXLivePlayer *)player 
+- (void)onLocalRecording:(TUITXLivePlayer *)player
               durationMs:(NSInteger)durationMs
              storagePath:(NSString *)storagePath;
 
@@ -231,15 +231,19 @@ NS_ASSUME_NONNULL_BEGIN
  *               - -3：录制时间太短，或未采集到任何视频或音频数据，请检查录制时长，或是否已开启音、视频采集。
  * @param storagePath 录制的文件地址。
  */
-- (void)onLocalRecordComplete:(TUITXLivePlayer *)player 
+- (void)onLocalRecordComplete:(TUITXLivePlayer *)player
                       errCode:(NSInteger)errCode
                   storagePath:(NSString *)storagePath;
 @end
 @interface TUITXLivePlayer : NSObject
-@property (nonatomic, strong) TUIPlayerLiveStrategyManager *liveStrategyManager;///直播播放策略
-@property (nonatomic, assign) BOOL isPrePlay; ///是否已经预播放
-@property (nonatomic, assign) NSInteger width;      ///视频宽度
-@property (nonatomic, assign) NSInteger height;     ///视频高度
+///直播播放策略
+@property (nonatomic, strong) TUIPlayerLiveStrategyManager *liveStrategyManager;
+///是否已经预播放
+@property (nonatomic, assign) BOOL isPrePlay;
+///视频宽度
+@property (nonatomic, assign) NSInteger width;
+///视频高度
+@property (nonatomic, assign) NSInteger height;
 
 /**
  * 设置播放器回调
@@ -317,6 +321,13 @@ NS_ASSUME_NONNULL_BEGIN
  *         - V2TXLIVE_OK: 成功。
  */
 - (V2TXLiveCode)resumeAudio;
+
+/**
+ * 从UI上移除当前播放器
+ */
+
+- (void)removeVideo;
+
 
 /**
  * 暂停播放器的视频流

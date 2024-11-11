@@ -16,7 +16,7 @@
 @property (nonatomic, strong) TUIPlayerVodStrategyManager *vodStrategyManager;///策略管理
 @property (nonatomic, strong) TUIPlayerVodManager* vodManager;
 @property (nonatomic, strong) TUIPlayerVodPreLoadManager* preloadManager;
-@property (nonatomic, strong) TUIPlayerResumeManager* resumeManager;
+@property (nonatomic, strong) TUIPlayerRecordManager* recordManager;
 @property (nonatomic, strong) NSMutableArray* dataArray;
 @property (nonatomic, assign) long currentIndex;
 @property (nonatomic, assign) long preIndex;
@@ -36,8 +36,8 @@
     if (self) {
         self.vodStrategyManager = [[TUIPlayerVodStrategyManager alloc] init];
         self.dataArray = @[].mutableCopy;
-        self.currentIndex = 0;
-        self.preIndex = 0;
+        self.currentIndex = -1;
+        self.preIndex = -1;
         self.engineObserver = observer;
         self.viewFactory = viewFactory;
         self.controllerId = controllerId;
@@ -98,28 +98,35 @@
             [videoItemView setItemViewModel:vodModel];
             if (isPreBind) {
                 TUILOGI(@"start preRender index:%lu", index)
-                [self removeVodPlayerCache:self.currentIndex preIndex:self.preIndex];
-                [self.vodManager prePlayWithModel:vodModel type:1];
+                if (self.currentIndex >= 0) {
+                    [self removeVodPlayerCache:self.currentIndex preIndex:self.preIndex];
+                }
+                if (self.currentIndex == index && [self.vodManager currentVodPlayer]) {
+                    TUITXVodPlayer *player = [self.vodManager currentVodPlayer];
+                    if (player.status < TUITXVodPlayerStatusPrepared && player.status > TUITXVodPlayerStatusEnded) {
+                        TUILOGW(@"prePlay a idle player,index:%lu", index)
+                        [self.vodManager prePlayWithModel:vodModel type:1];
+                    } else {
+                        TUILOGW(@"video is playing, jump prePlay opt,index:%lu", index)
+                    }
+                } else {
+                    TUILOGW(@"start prePlay a player, index:%lu", index)
+                    [self.vodManager prePlayWithModel:vodModel type:1];
+                }
             } else {
                 [self.vodManager resetAllPlayer];
                 [self.vodManager muteAllPlayer];
                 TUILOGI(@"mCurrentIndex start update to:%lu", index)
-                TUIPlayerVideoModel *nextModel = [self getVodModel:index + 1];
-                TUIPlayerVideoModel *preModel = [self getVodModel:index - 1];
                 if (self.curVodController != nil) {
                     [self.curVodController onUnBindController];
                     [self.vodManager removeDelegate:self.curVodController];
                     self.curVodController = nil;
                 }
                 [self.vodManager addDelegate:[itemView getVodController]];
-                [self.vodManager playWithModel:vodModel
-                                 resumeManager:self.resumeManager
-                                     lastModel:preModel
-                                     nextModel:nextModel];
+                [self.vodManager playWithModel:vodModel];
                 [self removeVodPlayerCache:index preIndex:self.currentIndex];
                 [[itemView getVodController] onBindController:self.vodManager.currentVodPlayer];
                 [self.preloadManager setCurrentPlayingModel:vodModel];
-                [self.vodManager.currentVodPlayer pausePlay];
                 self.preIndex = self.currentIndex;
                 self.currentIndex = index;
                 TUILOGI(@"mCurrentIndex updated to:%lu", self.currentIndex)
@@ -206,18 +213,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         TUIPlayerVodStrategyModel* vodStrategyModel = [FTUITransformer transToVodStrategyOpenPreFromMsg:msg];
         [self.vodStrategyManager setVideoStrategy:vodStrategyModel];
-        TUIPlayerVodStrategyManager *oldStartegyModel = self.vodStrategyManager;
         self.preloadManager.strategyManager = self.vodStrategyManager;
-        self.vodManager.strategyManager = self.vodStrategyManager;
-//        if (oldStartegyModel && vodStrategyModel.superResolutionType == [oldStartegyModel getSuperResolutionType] && self.currentIndex < self.dataArray.count) {
-//            [self.vodManager.currentVodPlayer stopPlay];
-//            TUIPlayerDataModel *dataModel = self.dataArray[self.currentIndex];
-//            if ([dataModel isKindOfClass:[TUIPlayerVideoModel class]]) {
-//                [self.vodManager.currentVodPlayer startVodPlayWithModel:[dataModel asVodModel]];
-//            } else {
-//                TUILOGE(@"[setVodStrategyMsg] live is not impl")
-//            }
-//        }
+        [self.vodManager setVodStrategyManager:self.vodStrategyManager];
     });
 }
 
@@ -233,18 +230,18 @@
     return @(0);
 }
 
-- (TUIPlayerResumeManager*)resumeManager {
-    if (self->_resumeManager == nil) {
-        self->_resumeManager = [[TUIPlayerResumeManager alloc] init];
-        self->_resumeManager.strategyManager = self.vodStrategyManager;
+- (TUIPlayerRecordManager*)recordManager {
+    if (self->_recordManager == nil) {
+        self->_recordManager = [[TUIPlayerRecordManager alloc] init];
+        self->_recordManager.strategyManager = self.vodStrategyManager;
     }
-    return self->_resumeManager;
+    return self->_recordManager;
 }
 
 - (TUIPlayerVodManager*)vodManager {
     if (self->_vodManager == nil) {
         self->_vodManager = [[TUIPlayerVodManager alloc] init];
-        self->_vodManager.strategyManager = self.vodStrategyManager;
+        [self->_vodManager setVodStrategyManager:self.vodStrategyManager];
     }
     return self->_vodManager;
 }
