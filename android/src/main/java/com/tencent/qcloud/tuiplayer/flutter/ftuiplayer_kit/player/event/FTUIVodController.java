@@ -249,6 +249,11 @@ public class FTUIVodController implements TUIVodViewListener, FtxMessages.FTUIVo
     }
 
     @Override
+    public void onRetryConnect(int i, Bundle bundle) {
+
+    }
+
+    @Override
     public void onPlayPause() {
 
     }
