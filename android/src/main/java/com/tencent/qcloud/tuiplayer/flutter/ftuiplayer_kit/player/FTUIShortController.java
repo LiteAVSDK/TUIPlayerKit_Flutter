@@ -10,6 +10,7 @@ import com.tencent.qcloud.tuiplayer.core.api.TUIPlayerVodStrategy;
 import com.tencent.qcloud.tuiplayer.core.api.model.TUIPlaySource;
 import com.tencent.qcloud.tuiplayer.core.api.model.TUIVideoSource;
 import com.tencent.qcloud.tuiplayer.core.api.tools.TUIDataUtils;
+import com.tencent.qcloud.tuiplayer.core.api.ui.player.ITUIVodPlayer;
 import com.tencent.qcloud.tuiplayer.core.api.ui.view.TUIBaseVideoView;
 import com.tencent.qcloud.tuiplayer.core.preload.TUIVideoDataHolder;
 import com.tencent.qcloud.tuiplayer.core.tools.TUIPlayerLog;
@@ -164,6 +165,11 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
 
     @Override
     public void postOnMain(Runnable runnable) {
+
+    }
+
+    @Override
+    public void onVodPlayerReady(ITUIVodPlayer ituiVodPlayer, TUIVideoSource tuiVideoSource) {
 
     }
 }

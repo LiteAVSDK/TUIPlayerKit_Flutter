@@ -10,9 +10,9 @@ PODS:
   - integration_test (0.0.1):
     - Flutter
   - Masonry (1.1.0)
-  - SDWebImage (5.19.7):
-    - SDWebImage/Core (= 5.19.7)
-  - SDWebImage/Core (5.19.7)
+  - SDWebImage (5.20.0):
+    - SDWebImage/Core (= 5.20.0)
+  - SDWebImage/Core (5.20.0)
   - tsrClient (1.2.0)
   - TUIPlayerCore/Player_Premium (2.0.3):
     - TXLiteAVSDK_Player_Premium (>= 11.4.0)
@@ -21,7 +21,7 @@ PODS:
     - SDWebImage
     - TUIPlayerCore/Player_Premium
   - TXCMonetPlugin (1.2.0)
-  - TXLiteAVSDK_Player_Premium (12.1.16597)
+  - TXLiteAVSDK_Player_Premium (12.2.16956)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -57,14 +57,14 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   ftuiplayer_kit: 41706da5a04e3a2da24614a26d24ecca307e9cbe
-  integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  SDWebImage: 8a6b7b160b4d710e2a22b6900e25301075c34cb3
+  SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
   tsrClient: 303584fbfed963ee7e64fa5c19be75df17f29787
   TUIPlayerCore: f1e7a97a41a60f903c9c16f9e3f106ec75c8b42e
   TUIPlayerShortVideo: 48f74449f119888f479c9c848303564a65cb342c
   TXCMonetPlugin: 6ddbc03685d6e7813e56fc864a372e82e0592e91
-  TXLiteAVSDK_Player_Premium: 61029d1e036c2cffb28776c4ce42c7f37d5bdd77
+  TXLiteAVSDK_Player_Premium: 27a23176ee2cce6196a08c99f82cb5524f79b930
 
 PODFILE CHECKSUM: 955c72fdd30d744606ac2b3de20266f1744aa7c8
 

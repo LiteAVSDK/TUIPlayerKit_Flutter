@@ -218,6 +218,11 @@ public class FTUIVodController implements TUIVodViewListener, FtxMessages.FTUIVo
     }
 
     @Override
+    public void onRcvAudioTrackInformation(List<TXTrackInfo> list) {
+
+    }
+
+    @Override
     public void onRcvTrackInformation(List<TXTrackInfo> list) {
 
     }
