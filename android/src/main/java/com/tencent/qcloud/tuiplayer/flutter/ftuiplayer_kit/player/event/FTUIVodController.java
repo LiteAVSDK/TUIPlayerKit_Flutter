@@ -37,8 +37,14 @@ public class FTUIVodController implements TUIVodViewListener, FtxMessages.FTUIVo
         mPlatformView = platformView;
     }
 
-    // 做好非空判断，播放器一致会服用，客户一致持有这个引用的话，就要及时置空，让客户调用没有效果，避免调用错乱
 
+    @Override
+    public void onPlayerAttached(TUIPlayerController tuiPlayerController) {
+
+    }
+
+
+    // 做好非空判断，播放器一致会服用，客户一致持有这个引用的话，就要及时置空，让客户调用没有效果，避免调用错乱
     @Override
     public void onPlayerControllerBind(TUIPlayerController tuiPlayerController) {
         mController = tuiPlayerController;

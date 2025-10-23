@@ -11,6 +11,7 @@ import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.tools.FTUITransformer;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.view.FTUIItemViewFactory;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -71,6 +72,22 @@ public class FTUIShortEngine implements FTUIShortEngineObserver, FtxMessages.FTU
         long appIdInt = appId;
         int authIdInt = authId.intValue();
         int srIdInt = srAlgorithmType.intValue();
-        MonetPlugin.setAppInfo(appIdInt, authIdInt, srIdInt);
+        setAppInfoReflectively(appIdInt, authIdInt, srIdInt);
+    }
+
+    public static void setAppInfoReflectively(long appId, int authId, int srId) {
+        try {
+            Class<?> monetPluginClass = Class.forName("com.tencent.liteav.monet.MonetPlugin");
+            Method setAppInfoMethod = monetPluginClass.getDeclaredMethod(
+                    "setAppInfo", long.class, int.class, int.class);
+            setAppInfoMethod.setAccessible(true);
+            setAppInfoMethod.invoke(null, appId, authId, srId);
+        } catch (ClassNotFoundException e) {
+            TUIPlayerLog.e(TAG, "MonetPlugin not found", e);
+        } catch (NoSuchMethodException e) {
+            TUIPlayerLog.e(TAG, "method setAppInfo not found", e);
+        } catch (Exception e) {
+            TUIPlayerLog.e(TAG, "setAppInfo happen error", e);
+        }
     }
 }

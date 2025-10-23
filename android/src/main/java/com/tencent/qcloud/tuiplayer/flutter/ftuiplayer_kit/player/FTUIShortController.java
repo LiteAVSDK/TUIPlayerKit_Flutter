@@ -60,7 +60,12 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
             itemVideoView.bindVideoModel(mDataHolder.getSource(curIndex));
             if (isPreBind) {
                 TUIPlayerLog.v(TAG, "start preRender index:" + curIndex);
-                mManager.preRenderOnView(itemVideoView);
+                if (Math.abs(curIndex - mCurrentIndex) > 2) {
+                    TUIPlayerLog.w(TAG, "jump preRender index:" + curIndex
+                            + ", the difference between the index and the current coordinates is too large");
+                } else {
+                    mManager.preRenderOnView(itemVideoView);
+                }
             } else {
                 mCurrentIndex = curIndex;
                 TUIPlayerLog.v(TAG, "mCurrentIndex start update to:" + mCurrentIndex);
@@ -170,6 +175,11 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
 
     @Override
     public void onVodPlayerReady(ITUIVodPlayer ituiVodPlayer, TUIVideoSource tuiVideoSource) {
+
+    }
+
+    @Override
+    public void changeCurPos(int i) {
 
     }
 }

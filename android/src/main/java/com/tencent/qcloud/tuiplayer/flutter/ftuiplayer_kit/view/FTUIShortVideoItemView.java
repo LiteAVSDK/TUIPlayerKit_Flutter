@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.tencent.qcloud.tuiplayer.core.api.common.TUIConstants;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.player.event.FTUIVodController;
 import com.tencent.qcloud.tuiplayer.shortvideo.ui.view.TUIShortVideoItemView;
@@ -28,7 +29,7 @@ public class FTUIShortVideoItemView implements PlatformView {
         mMessenger = messenger;
         mPlatformObserver = platformViewObserver;
         viewId = id;
-        mItemView = new TUIShortVideoItemView(context);
+        mItemView = new TUIShortVideoItemView(context, TUIConstants.RenderViewType.TEXTURE_VIEW);
         mItemView.setClickable(false);
         mItemView.setFocusableInTouchMode(false);
         mItemView.setLongClickable(false);

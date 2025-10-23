@@ -4,6 +4,7 @@ package com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.tools;
 import com.tencent.qcloud.tuiplayer.core.TUIPlayerConfig;
 import com.tencent.qcloud.tuiplayer.core.api.TUIPlayerVodStrategy;
 import com.tencent.qcloud.tuiplayer.core.api.common.TUIConstants;
+import com.tencent.qcloud.tuiplayer.core.api.model.TUIPlayerVideoConfig;
 import com.tencent.qcloud.tuiplayer.core.api.model.TUIVideoSource;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
 
@@ -90,7 +91,8 @@ public class FTUITransformer {
                     ? TUIConstants.TUISuperResolution.SUPER_RESOLUTION_ASR
                     : TUIConstants.TUISuperResolution.SUPER_RESOLUTION_NONE);
         }
-        strategy.setIsRetainPreVod(true);
+//        strategy.setIsRetainPreVod(true);
+        strategy.setPrePlayStrategy(TUIConstants.TUIPrePlayStrategy.TUIPrePlayStrategyAdjacent);
         return strategy.build();
     }
 
