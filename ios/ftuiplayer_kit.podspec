@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'ftuiplayer_kit'
-  s.version          = '1.1.2'
+  s.version          = '1.1.3'
   s.summary          = 'TUIPlayerKit For Flutter'
   s.description      = <<-DESC
 TUIPlayerKit For Flutter
