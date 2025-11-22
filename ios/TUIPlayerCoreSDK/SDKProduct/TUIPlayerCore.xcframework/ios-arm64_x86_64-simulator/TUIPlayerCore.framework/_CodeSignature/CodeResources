@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/TUIMediaDataManager.h</key>
 		<data>
-		dZzPmTOgPplwjm6x8WHZIKAOraE=
+		LqQ7bUNGv6U0mODFqGk7OAUBjpM=
 		</data>
 		<key>Headers/TUIMediaManager.h</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Headers/TUIPlayerCore-umbrella.h</key>
 		<data>
-		+uvkF41h5nSTnMkKVRUtwAlBuQo=
+		mt/X1smmggmfJSEkagsHjI9ESv0=
 		</data>
 		<key>Headers/TUIPlayerCore.h</key>
 		<data>
-		6/fZ5rVimDijP6jBq5VMbcx8i3Y=
+		CTfH+fCncBJ5yzKpIDCSBRWhcjk=
 		</data>
 		<key>Headers/TUIPlayerCoreLiteAVSDKHeader.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/TUIPlayerLiveManager.h</key>
 		<data>
-		HE1+c5T5jaeHgqKwR6mi1zB5Ciw=
+		X67GpfnzwbfpWJhnu6EqdbX5wiU=
 		</data>
 		<key>Headers/TUIPlayerLiveModel.h</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>Headers/TUIPlayerLiveStrategyManager.h</key>
 		<data>
-		zZrUo3itQ5qJ+XZBwNlE1FT61iM=
+		4e0pbWhjuMQFb6Y+c05PIQvLRAQ=
 		</data>
 		<key>Headers/TUIPlayerLiveStrategyModel.h</key>
 		<data>
-		bKVclwCTrHPaaoRTTc9DPrN4VmY=
+		GRG7GW70JnA4saB1OHaS6pIKO4g=
 		</data>
 		<key>Headers/TUIPlayerLog.h</key>
 		<data>
@@ -68,13 +68,17 @@
 		<data>
 		ATP1mhctAYK1wdKiab0v8St2VJ8=
 		</data>
+		<key>Headers/TUIPlayerStrategyModel.h</key>
+		<data>
+		em9mebculVMdAF/YVfFFxviKoB8=
+		</data>
 		<key>Headers/TUIPlayerSubtitleModel.h</key>
 		<data>
 		cwEmFJs4ofC3jyBFEuu/ANWaWj0=
 		</data>
 		<key>Headers/TUIPlayerVideoConfig.h</key>
 		<data>
-		+Jvd5SDuO/HnmsrcCKDAqtBUsj8=
+		oUwBnKZeSxPsWgzMLiOnmMzefEo=
 		</data>
 		<key>Headers/TUIPlayerVideoConfigManager.h</key>
 		<data>
@@ -94,7 +98,7 @@
 		</data>
 		<key>Headers/TUIPlayerVodManager.h</key>
 		<data>
-		hWr6JCjBvQnXQludWQd+6ZretPE=
+		lZG6bnK4WhMVYfIrEbQLbqlFiXE=
 		</data>
 		<key>Headers/TUIPlayerVodPreLoadManager.h</key>
 		<data>
@@ -102,11 +106,11 @@
 		</data>
 		<key>Headers/TUIPlayerVodStrategyManager.h</key>
 		<data>
-		tgyDEmJyJMhX35S7gOSbVcH2vpw=
+		aqo+Lreq/Nf1im4kMLQfeNmqqRM=
 		</data>
 		<key>Headers/TUIPlayerVodStrategyModel.h</key>
 		<data>
-		JrFO/1aqmum8DSklIFHeSO4DDn0=
+		qxxktp27OhnLK/WIJmIaYiE2EVI=
 		</data>
 		<key>Headers/TUIPlyerCoreSDKTypeDef.h</key>
 		<data>
@@ -114,15 +118,15 @@
 		</data>
 		<key>Headers/TUITXLivePlayer.h</key>
 		<data>
-		Z8oWXvWV2F/RnEG7dm9Qd5f51cY=
+		Hk2KkB7e45aFMHIt21Kw4JK3T0U=
 		</data>
 		<key>Headers/TUITXVodPlayer.h</key>
 		<data>
-		qrc4fX0ThcIBWNrkTWjpo8H2TVE=
+		83YH6TnAtc4OBC/78QtzvuKA4oA=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		vjzUk4bdD7boU9Yd8MfHHrmQLmg=
+		MRXqdb6qjNfLNKXjpPigZcLQwAc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -146,11 +150,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			dZzPmTOgPplwjm6x8WHZIKAOraE=
+			LqQ7bUNGv6U0mODFqGk7OAUBjpM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ov8ZK+mOn3s/MctqOLiHl7m2T/4qG0UrP5ZscHe3Ovg=
+			Fv3/sI1Mgu45il5yLEaBWy6vWZpBiLkvA4HWq+jJxnw=
 			</data>
 		</dict>
 		<key>Headers/TUIMediaManager.h</key>
@@ -190,22 +194,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+uvkF41h5nSTnMkKVRUtwAlBuQo=
+			mt/X1smmggmfJSEkagsHjI9ESv0=
 			</data>
 			<key>hash2</key>
 			<data>
-			/RlbgRfsy8BYBtoa+RWfyN1jRiGLBr8XC4EWnzMbDeg=
+			gtyk3FBpcNJYKxyOG46MDXsQwLUdw/5Inx5cFXedQW0=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerCore.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			6/fZ5rVimDijP6jBq5VMbcx8i3Y=
+			CTfH+fCncBJ5yzKpIDCSBRWhcjk=
 			</data>
 			<key>hash2</key>
 			<data>
-			NCzJ7hxvTSEDmLv8zpXyh5qBCXb1pLazLp0SBPIocfM=
+			VBG4cAOAKVfVCW6PWHZHYfxlufewyRrIkYrCCNDrn2w=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerCoreLiteAVSDKHeader.h</key>
@@ -245,11 +249,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			HE1+c5T5jaeHgqKwR6mi1zB5Ciw=
+			X67GpfnzwbfpWJhnu6EqdbX5wiU=
 			</data>
 			<key>hash2</key>
 			<data>
-			TZrapz9hHF1wdrJLT5BGYnokCCKJTQr7AKmnRmKnzvs=
+			w3wn/+5XlHsm//S73ySN6Gv9UrY33NQTaFlTqV0LrDM=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerLiveModel.h</key>
@@ -267,22 +271,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			zZrUo3itQ5qJ+XZBwNlE1FT61iM=
+			4e0pbWhjuMQFb6Y+c05PIQvLRAQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			Gg+Wzn/A9YG+v48csZWnVYn2q8Q0KBv++GrOb1KTOlY=
+			9wAx0Rs6gsBKzShAhNaHfSa0cy3W4ztaHo2G05rZBu0=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerLiveStrategyModel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			bKVclwCTrHPaaoRTTc9DPrN4VmY=
+			GRG7GW70JnA4saB1OHaS6pIKO4g=
 			</data>
 			<key>hash2</key>
 			<data>
-			PTZhrINI0kCvO6MHv3WRYA/47GNxnRHXYiDcJa+cFDk=
+			m53gVR72qfg8KzuY5vTkEFkzrt9g2NCTyxMkDS8tvK4=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerLog.h</key>
@@ -307,6 +311,17 @@
 			1TZK15CgudDffVLbRH/QKhaS5zCWBG5fF9rg/W2kTcE=
 			</data>
 		</dict>
+		<key>Headers/TUIPlayerStrategyModel.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			em9mebculVMdAF/YVfFFxviKoB8=
+			</data>
+			<key>hash2</key>
+			<data>
+			U+eL8vrCmyP5T/3c0XjrSaizUDUCxc3yPpIpXUsJvic=
+			</data>
+		</dict>
 		<key>Headers/TUIPlayerSubtitleModel.h</key>
 		<dict>
 			<key>hash</key>
@@ -322,11 +337,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+Jvd5SDuO/HnmsrcCKDAqtBUsj8=
+			oUwBnKZeSxPsWgzMLiOnmMzefEo=
 			</data>
 			<key>hash2</key>
 			<data>
-			fkEoN7gzMchC2yBOfBnNJTwGNoh2CmP2MKIy0cEUmZA=
+			4QsYKySGO+VYmPNJB3nDjCvazcOdZ1Sr0vhWrae9dXg=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerVideoConfigManager.h</key>
@@ -377,11 +392,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			hWr6JCjBvQnXQludWQd+6ZretPE=
+			lZG6bnK4WhMVYfIrEbQLbqlFiXE=
 			</data>
 			<key>hash2</key>
 			<data>
-			dD5sRYUB15ZXnmzMIbB5Is7G3s4eq5bLZ0H5xFWY1Jw=
+			SpGn7htZCAnzOwrCsPHMB8c/bW1R8z7OL623t9Mm1qg=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerVodPreLoadManager.h</key>
@@ -399,22 +414,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tgyDEmJyJMhX35S7gOSbVcH2vpw=
+			aqo+Lreq/Nf1im4kMLQfeNmqqRM=
 			</data>
 			<key>hash2</key>
 			<data>
-			zpEuUHiAgSr+RyZ+lzErCp8Uv+P5ZODPF1EEWcXGAtU=
+			LuCBq0wiO+LViRjGLsfu0edDGdNM6CtLDKGhAw/fz58=
 			</data>
 		</dict>
 		<key>Headers/TUIPlayerVodStrategyModel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JrFO/1aqmum8DSklIFHeSO4DDn0=
+			qxxktp27OhnLK/WIJmIaYiE2EVI=
 			</data>
 			<key>hash2</key>
 			<data>
-			kttatSFubpAsjoUERzjkTGIYuh+BGs2l6YRpR51aQO8=
+			Gme/yvtqrTxRTj44sXzje/D0hlswP3EiFMAQObymtpM=
 			</data>
 		</dict>
 		<key>Headers/TUIPlyerCoreSDKTypeDef.h</key>
@@ -432,22 +447,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Z8oWXvWV2F/RnEG7dm9Qd5f51cY=
+			Hk2KkB7e45aFMHIt21Kw4JK3T0U=
 			</data>
 			<key>hash2</key>
 			<data>
-			OezVkUkBp+0D4K2Cf6fc+/3OFPcRO4WP7JW39pNZHgQ=
+			KSBSB2Z47mBPPAtinzviQSN5ricNjC9dzlPptjiL5uQ=
 			</data>
 		</dict>
 		<key>Headers/TUITXVodPlayer.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			qrc4fX0ThcIBWNrkTWjpo8H2TVE=
+			83YH6TnAtc4OBC/78QtzvuKA4oA=
 			</data>
 			<key>hash2</key>
 			<data>
-			0J3ZbnmkYvcwd2luclevS50kxqLLu4s0r2ukytLBRmY=
+			MmCiz9zfHfaW767TAHHs8gw7YIMMiAINNPzGIywfZDM=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

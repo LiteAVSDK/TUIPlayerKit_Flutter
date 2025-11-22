@@ -2,11 +2,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TUIPlayerCore/TUIPlayerStrategyModel.h>
 #import "TUIPlyerCoreSDKTypeDef.h"
 #import "TUIPlayerCoreLiteAVSDKHeader.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TUIPlayerLiveStrategyModel : NSObject
+@interface TUIPlayerLiveStrategyModel : TUIPlayerStrategyModel
 ///是否开启上一个预播放，默认NO
 @property (nonatomic, assign) BOOL enableLastPrePlay;
 ///画布填充样式，默认V2TXLiveFillModeFill

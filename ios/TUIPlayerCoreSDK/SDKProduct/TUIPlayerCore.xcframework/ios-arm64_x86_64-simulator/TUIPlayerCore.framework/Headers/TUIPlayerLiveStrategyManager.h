@@ -13,6 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TUIPlayerLiveStrategyManager : NSObject
 @property (nonatomic, getter=isEnableLastPrePlay, readonly) BOOL enableLastPrePlay;
+
+/**
+ *  预播放策略
+ */
+@property (nonatomic, assign, readonly) TUIPreplayStrategy preplayStrategy;
+
 /**
  *  添加代理
  *  @param  delegate 代理对象

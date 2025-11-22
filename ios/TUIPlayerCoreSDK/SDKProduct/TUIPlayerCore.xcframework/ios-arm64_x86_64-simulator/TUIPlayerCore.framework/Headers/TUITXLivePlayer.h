@@ -7,7 +7,20 @@
 #import "TUIPlayerLiveStrategyManager.h"
 NS_ASSUME_NONNULL_BEGIN
 @class TUITXLivePlayer;
+
+typedef NS_ENUM(NSUInteger, TUITXLivePlayerStatus) {
+    TUITXLivePlayerStatusIdle = 0,      // 空闲状态
+    TUITXLivePlayerStatusLoading = 1,   // 加载中
+    TUITXLivePlayerStatusPrepared = 2,  // 准备播放
+    TUITXLivePlayerStatusPlaying = 3,   // 播放中
+    TUITXLivePlayerStatusPaused = 4,    // 暂停
+    TUITXLivePlayerStatusError = 5,     // 错误
+};
+
 @protocol TUITXLivePlayerDelegate <NSObject>
+
+@optional
+
 /**
  * 缩放模式发生改变，会回调该通知
  *
@@ -244,6 +257,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger width;
 ///视频高度
 @property (nonatomic, assign) NSInteger height;
+// 播放器状态
+@property (nonatomic, assign, readonly) TUITXLivePlayerStatus status;
+// 播放器报错信息
+@property (nonatomic, strong, readonly) NSError *error;
 
 /**
  * 设置播放器回调

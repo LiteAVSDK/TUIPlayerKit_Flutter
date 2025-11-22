@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, TUIMeidaDataActionType) {
 NS_ASSUME_NONNULL_BEGIN
 
 // 当videoModels_n数组列表改变时 触发的messageName
-static NSString* const MEDIA_MODELS_DATA_CHANGE = @"MEDIA_MODELS_DATA_CHANGE";
+FOUNDATION_EXPORT NSString *const MEDIA_MODELS_DATA_CHANGE;
 
 
 @interface TUIMediaDataManager : NSObject

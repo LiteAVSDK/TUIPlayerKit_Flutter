@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TUIPlayerCore'
-  s.version          = '2.0.3'
+  s.version          = '2.1.3'
   s.summary          = 'TUIPlayerCore SDK.'
   s.description      = <<-DESC
   TUIPlayerCore SDK.

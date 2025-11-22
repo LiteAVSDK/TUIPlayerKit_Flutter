@@ -1,6 +1,7 @@
 // Copyright (c) 2023 Tencent. All rights reserved.
 
 #import <UIKit/UIKit.h>
+#import "TUIPlayerContextDefine.h"
 #import "TUIPlayerShortVideoUIManager.h"
 #import "TUIPullUpRefreshControl.h"
 #import "TUIShortVideoDataManager.h"
@@ -9,6 +10,8 @@
 @class TUIPlayerLiveStrategyManager;
 @class TUIPlayerVideoModel;
 @class TUIPlayerDataModel;
+@class TUIShortVideoView;
+
 /// 播放模式
 typedef NS_ENUM(NSUInteger, TUIPlayMode) {
     /// 单个循环，当前视频重复播放
@@ -22,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///Delegate
 @protocol TUIShortVideoViewDelegate <NSObject>
+
+@optional
+
 /**
  * 滑动中
  * contentOffset 内容偏移量
@@ -32,20 +38,28 @@ NS_ASSUME_NONNULL_BEGIN
  * @param videoIndex 当前索引
  * @param videoModel 当前数据模型
  */
-- (void)scrollViewDidEndDeceleratingIndex:(NSInteger )videoIndex
-                               videoModel:(TUIPlayerDataModel *)videoModel;
+- (void)scrollViewDidEndDeceleratingIndex:(NSInteger)videoIndex videoModel:(TUIPlayerDataModel *)videoModel;
+
+/**
+ * 自动滑动结束回调
+ * @param shortVideoView 回调的短视频View
+ * @param index 当前索引
+ * @param videoModel 当前数据模型
+ */
+- (void)shortVideoView:(TUIShortVideoView *)shortVideoView didEndScrollingAnimationWithIndex:(NSUInteger)index videoModel:(TUIPlayerDataModel *)videoModel;
+
 /**
  * 滑动回调
  * @param videoIndex 当前索引
  * @param videoModel 当前数据模型
  */
-- (void)scrollToVideoIndex:(NSInteger )videoIndex
-                videoModel:(TUIPlayerDataModel *)videoModel;
+- (void)scrollToVideoIndex:(NSInteger)videoIndex videoModel:(TUIPlayerDataModel *)videoModel;
 /**
  * 在滑动到下一个页面前触发，返回上一个页面的数据模型，可以在这里做一些收尾工作
  * @param lastModel 上一条数据模型
  */
-- (void)willScrollToNextPageWithLastModel:(TUIPlayerDataModel*)lastModel;
+- (void)willScrollToNextPageWithLastModel:(TUIPlayerDataModel*)lastModel DEPRECATED_MSG_ATTRIBUTE("Use 'shortVideoView:willDefocusVideo:context:' instead.");
+
 /**
  * 需要加载下一页
  * 回调时机跟TUIPlayerVodStrategyModel/mPreloadConcurrentCount相关
@@ -87,6 +101,36 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)videoPreLoadStateWithModel:(TUIPlayerVideoModel *)videoModel;
 
+/**
+ * 即将反聚焦播放器
+ * @param shortVideoView 回调的短视频View
+ * @param video 即将划走的视频数据
+ * @param context 视频上下文信息, 见TUIPlayerContext
+ */
+- (void)shortVideoView:(TUIShortVideoView *)shortVideoView
+      willDefocusVideo:(TUIPlayerDataModel *)video
+               context:(NSDictionary<TUIPlayerContext, id> *)context;
+
+/**
+ * 播放器即将加载视频
+ * @param shortVideoView 回调的短视频View
+ * @param player 播放器实例
+ * @param videoModel 加载的视频信息
+ * @discussion 此接口在播放器加载视频前调用，可做播放器配置
+ */
+- (void)shortVideoView:(TUIShortVideoView *)shortVideoView
+        playerDidReady:(TUITXVodPlayer *)player
+            videoModel:(TUIPlayerVideoModel *)videoModel;
+
+/**
+ * @brief 获取播放器渲染View的frame
+ * @param shortVideoView 短视频View
+ * @param videoModel 加载的视频信息，需外部判断数据类型（直播/点播）
+ * @param containerSize widget superView的size
+ * @discussion 默认为全屏大小
+ */
+- (CGRect)shortVideoView:(TUIShortVideoView *)shortVideoView widgetFrameForVideoModel:(__kindof TUIPlayerDataModel *)videoModel containerSize:(CGSize)containerSize;
+
 @end
 
 ///自定义回调事件协议
@@ -123,6 +167,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) TUIPullUpRefreshControl *pullUpRefreshControl;
 ///默认是YES ,NO禁止滑动
 @property (nonatomic, assign) BOOL scrollEnabled;
+///启播位置
+@property (nonatomic, assign) NSInteger startIndex;
 /**
  * 初始化（带自定义UI）
  */
@@ -248,6 +294,23 @@ NS_ASSUME_NONNULL_BEGIN
  * 获取直播策略管理器
  */
 - (TUIPlayerLiveStrategyManager *)getLiveStrategyManager;
+
+/**
+ * 设置当前播放器倍速播放
+ * @param rate 播放速度（0.5-3.0）
+ */
+- (void)setPlayRate:(CGFloat)rate;
+
+@end
+
+@interface TUIShortVideoView (PlaybackStatus)
+
+// 当前播放器播放进度
+@property (nonatomic, assign, readonly) NSTimeInterval currentProgress;
+
+// 当前播放视频时长
+@property (nonatomic, assign, readonly) NSTimeInterval videoDuration;
+
 @end
 
 NS_ASSUME_NONNULL_END

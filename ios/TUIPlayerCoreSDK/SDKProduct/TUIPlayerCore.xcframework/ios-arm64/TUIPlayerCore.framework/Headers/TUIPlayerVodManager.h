@@ -9,13 +9,15 @@
 #import "TUIPlayerCore/TUIMediaDataManager.h"
 NS_ASSUME_NONNULL_BEGIN
 @protocol TUIPlayerVodManagerDelegate <NSObject>
-
+@optional
 - (void)currentPlayer:(TUITXVodPlayer *)player;
 - (void)onPlayEvent:(TUITXVodPlayer *)player event:(int)EvtID withParam:(NSDictionary *)param ;
 - (void)onNetStatus:(TUITXVodPlayer *)player withParam:(NSDictionary *)param ;
 - (void)player:(TUITXVodPlayer *)player statusChanged:(TUITXVodPlayerStatus)status;
 - (void)player:(TUITXVodPlayer *)player currentTime:(float)currentTime totalTime:(float)totalTime progress:(float)progress;
 - (void)vodRenderModeChanged:(TUI_Enum_Type_RenderMode)renderMode;
+- (void)player:(TUITXVodPlayer *)player willLoadVideoModel:(TUIPlayerVideoModel *)videoModel;
+- (void)onPlayer:(TUITXVodPlayer *)player subtitleData:(TXVodSubtitleData *)subtitleData;
 @end
 ///播放器预加载缓存管理
 @interface TUIPlayerVodManager : NSObject
@@ -60,7 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (TUITXVodPlayer *)getPrePlayerWithModel:(TUIPlayerVideoModel *)model
                                       type:(NSInteger)type;
 
-
+/// 记录当前视频的播放时长
+- (void)recordCurrentPlayBackTime;
 
 /**
  * 预播放

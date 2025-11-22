@@ -12,6 +12,7 @@
 
 #import "TUIShortVideoDataManager.h"
 #import "TUIPlayerShortVideoSDKVersion.h"
+#import "TUIPlayerContextDefine.h"
 #import "TUIPlayerViewCommonDefine.h"
 #import "TUIPlayerShortVideoLoadingViewProtocol.h"
 #import "TUIShortVideoLoadingView.h"
@@ -26,9 +27,11 @@
 #import "TUIShortVideoItemCustomCell.h"
 #import "TUIShortVideoItemLiveCell.h"
 #import "TUIShortVideoLiveContainerView.h"
+#import "TUIShortVideoCellInterface.h"
 #import "TUIShortVideoItemView.h"
 #import "TUIShortVideoView+SDKVersion.h"
 #import "TUIShortVideoView.h"
+#import "TUITableView.h"
 #import "TUIShortVideoBaseView.h"
 
 FOUNDATION_EXPORT double TUIPlayerShortVideoVersionNumber;

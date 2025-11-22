@@ -36,20 +36,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playWithModel:(TUIPlayerLiveModel *)model;
 
 /// 绑定player
--(BOOL)setCurrentLivePlayerWithModel:(TUIPlayerLiveModel *)model;
+- (BOOL)setCurrentLivePlayerWithModel:(TUIPlayerLiveModel *)model;
 
 /// 播放当前player
--(BOOL)playCurretLivePlayerWithModel:(TUIPlayerLiveModel *)model;
+- (BOOL)playCurretLivePlayerWithModel:(TUIPlayerLiveModel *)model;
 
 - (BOOL)nextPrePlay;
 - (BOOL)lastPrePlay;
-
-
 
 - (void)removeLivePlayerCache;
 - (BOOL)removePlayerCache:(TUIPlayerLiveModel *)model;
 - (BOOL)removePlayerCacheForPlayer:(TUITXLivePlayer *)player;
 - (void)stopAllPlayer;
+// stop当前播放器
+- (void)stop;
 - (void)muteAllPlayer;
 - (void)addDelegate:(id<TUIPlayerLiveManagerDelegate>)delegate;
 - (void)removeDelegate:(id<TUIPlayerLiveManagerDelegate>)delegate;

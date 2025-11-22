@@ -8,6 +8,10 @@
 #else
 #import "TUIPlayerLiveManager.h"
 #endif
+#import "TUIShortVideoCellInterface.h"
+
+@class TUIShortVideoItemLiveCell;
+
 NS_ASSUME_NONNULL_BEGIN
 @protocol TUIShortVideoItemLiveCellDelegate <NSObject>
 
@@ -17,9 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)liveCustomCallbackEvent:(id)info;
 
 @end
+
 @interface TUIShortVideoItemLiveCell : UITableViewCell
+
 @property (nonatomic, weak) id <TUIShortVideoItemLiveCellDelegate> delegate;
+
+@property (nonatomic, weak) id<TUIShortVideoCellLayoutDelegate> layoutDelegate;
+
 @property (nonatomic, strong) UIView *videoWidgetView;  /// 渲染容器
+
 @property (nonatomic, strong) TUIPlayerLiveModel *model;/// 视频模型
 
 + (TUIShortVideoItemLiveCell *)cellWithtableView:(UITableView *)tableView
@@ -31,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
  * @param renderMode 缩放模式
 */
 - (void)setBackgroundImageRenderMode:(V2TXLiveFillMode)renderMode;
+
+- (void)bindPlayer:(TUITXLivePlayer *)player;
 
 @end
 

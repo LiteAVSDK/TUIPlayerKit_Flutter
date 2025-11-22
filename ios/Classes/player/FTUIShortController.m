@@ -26,6 +26,9 @@
 @property (nonatomic, strong) id<FTUIShortEngineObserver> engineObserver;
 @property (nonatomic, assign) NSUInteger controllerId;
 
+@property (nonatomic, assign) long cachePageIndex;
+@property (nonatomic, assign) long cacheIndex;
+
 @end
 
 @implementation FTUIShortController
@@ -42,6 +45,8 @@
         self.viewFactory = viewFactory;
         self.controllerId = controllerId;
         self.curVodController = nil;
+        self.cachePageIndex = -1;
+        self.cacheIndex = -1;
         SetUpFTUIPlayerShortAPIWithSuffix(messenger, self, [NSString stringWithFormat:@"%lu", controllerId]);
     }
     return self;
@@ -93,25 +98,36 @@
         TUIPlayerDataModel *dataModel = self.dataArray[index];
         if ([dataModel isKindOfClass:[TUIPlayerVideoModel class]]) {
             TUIPlayerVideoModel* vodModel = [dataModel asVodModel];
-            [self.preloadManager cancelPreLoadOperationWith:vodModel];
+            [self.vodManager.vodPreLoadManager cancelPreLoadOperationWith:vodModel];
             __block TUIShortVideoItemView* videoItemView = (TUIShortVideoItemView*)[itemView view];
             [videoItemView setItemViewModel:vodModel];
             if (isPreBind) {
                 TUILOGI(@"start preRender index:%lu", index)
-                if (self.currentIndex >= 0) {
-                    [self removeVodPlayerCache:self.currentIndex preIndex:self.preIndex];
-                }
                 if (self.currentIndex == index && [self.vodManager currentVodPlayer]) {
                     TUITXVodPlayer *player = [self.vodManager currentVodPlayer];
                     if (player.status < TUITXVodPlayerStatusPrepared && player.status > TUITXVodPlayerStatusEnded) {
                         TUILOGW(@"prePlay a idle player,index:%lu", index)
                         [self.vodManager prePlayWithModel:vodModel type:1];
+
+                        [self.vodManager setVideoWidget:videoItemView.videoBaseView.videoContainerView model:vodModel
+                                     firstFrameCallBack:^(BOOL isFirstFrame) {
+                            [videoItemView hiddenCoverImage:YES];
+                        }];
                     } else {
                         TUILOGW(@"video is playing, jump prePlay opt,index:%lu", index)
                     }
-                } else {
+                }
+                else if (ABS(self.currentIndex - index) > 2) {
+                    TUILOGW(@"jump preRender index:%lu, the difference between the index and the current coordinates is too large", self.currentIndex);
+                }
+                else {
                     TUILOGW(@"start prePlay a player, index:%lu", index)
                     [self.vodManager prePlayWithModel:vodModel type:1];
+
+                    [self.vodManager setVideoWidget:videoItemView.videoBaseView.videoContainerView model:vodModel
+                                 firstFrameCallBack:^(BOOL isFirstFrame) {
+                        [videoItemView hiddenCoverImage:YES];
+                    }];
                 }
             } else {
                 [self.vodManager resetAllPlayer];
@@ -123,19 +139,29 @@
                     self.curVodController = nil;
                 }
                 [self.vodManager addDelegate:[itemView getVodController]];
+                [self.vodManager.vodPreLoadManager setCurrentPlayingModel:vodModel];
                 [self.vodManager playWithModel:vodModel];
                 [self removeVodPlayerCache:index preIndex:self.currentIndex];
+                self.curVodController = [itemView getVodController];
                 [[itemView getVodController] onBindController:self.vodManager.currentVodPlayer];
-                [self.preloadManager setCurrentPlayingModel:vodModel];
                 self.preIndex = self.currentIndex;
                 self.currentIndex = index;
                 TUILOGI(@"mCurrentIndex updated to:%lu", self.currentIndex)
+                [self.vodManager setVideoWidget:videoItemView.videoBaseView.videoContainerView model:vodModel
+                             firstFrameCallBack:^(BOOL isFirstFrame) {
+                    [videoItemView hiddenCoverImage:YES];
+                }];
+                [videoItemView getPlayer:self.vodManager.currentVodPlayer];
+                if (index == 0) {
+                    self.cachePageIndex = 1;
+                    self.cacheIndex = 1;
+                }
+                if (self.cachePageIndex >= 0 && self.cacheIndex >= 0) {
+                    [self bindVideoView:self.cachePageIndex index:self.cacheIndex isPreBind:YES];
+                    self.cachePageIndex = -1;
+                    self.cacheIndex = -1;
+                }
             }
-            [self.vodManager setVideoWidget:videoItemView.videoBaseView.videoContainerView model:vodModel
-                         firstFrameCallBack:^(BOOL isFirstFrame) {
-                [videoItemView hiddenCoverImage:YES];
-            }];
-            [videoItemView getPlayer:self.vodManager.currentVodPlayer];
         } else {
             TUILOGE(@"unImpl modelType:%@", dataModel);
         }
@@ -149,7 +175,9 @@
 }
 
 - (void)preBindVideoPageViewId:(NSInteger)pageViewId index:(NSInteger)index error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
-    [self bindVideoView:pageViewId index:index isPreBind:YES];
+    self.cachePageIndex = pageViewId;
+    self.cacheIndex = index;
+//    [self bindVideoView:pageViewId index:index isPreBind:YES];
 }
 
 - (nullable NSNumber *)setModelsMsg:(nonnull FTUIListVodSourceMsg *)msg error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
@@ -162,7 +190,8 @@
         NSArray *internalModels = [FTUITransformer transToListVodSourceFromMsg:msg];
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:internalModels];
-        [self.preloadManager setPlayerModels:internalModels];
+        [self.vodManager.vodPreLoadManager setPlayerModels:internalModels];
+        [self.vodManager.vodDataManager setShortVideoModels:internalModels];
         return @(0);
     }
 }
@@ -171,7 +200,8 @@
     @synchronized (self.dataArray) {
         NSArray *internalModels = [FTUITransformer transToListVodSourceFromMsg:msg];
         [self.dataArray addObjectsFromArray:internalModels];
-        [self.preloadManager appendPlayerModels:internalModels];
+        [self.vodManager.vodPreLoadManager appendPlayerModels:internalModels];
+        [self.vodManager.vodDataManager appendShortVideoModels:internalModels];
         TUIPlayerVideoModel *nextModel = [self getVodModel:self.currentIndex + 1];
         if (nil != nextModel) {
             [self.preloadManager cancelPreLoadOperationWith:nextModel];
@@ -213,8 +243,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         TUIPlayerVodStrategyModel* vodStrategyModel = [FTUITransformer transToVodStrategyOpenPreFromMsg:msg];
         [self.vodStrategyManager setVideoStrategy:vodStrategyModel];
-        self.preloadManager.strategyManager = self.vodStrategyManager;
         [self.vodManager setVodStrategyManager:self.vodStrategyManager];
+        self.vodManager.vodPreLoadManager.strategyManager = self.vodStrategyManager;
     });
 }
 

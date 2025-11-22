@@ -27,7 +27,8 @@
     if (self) {
         UITableView* tableView = [[UITableView alloc] initWithFrame:frame];
         TUIPlayerShortVideoUIManager* uiManager = [[TUIPlayerShortVideoUIManager alloc] init];
-        self.itemView = [TUIShortVideoItemView cellWithtableView:tableView uiManager:uiManager];
+//        self.itemView = [TUIShortVideoItemView cellWithtableView:tableView uiManager:uiManager];
+        self.itemView = [TUIShortVideoItemView tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:viewId inSection:0] uiManager:uiManager];
         [self.itemView hiddenCoverImage:YES];
         [self.itemView hideCenterView];
         [self.itemView stopLoading];

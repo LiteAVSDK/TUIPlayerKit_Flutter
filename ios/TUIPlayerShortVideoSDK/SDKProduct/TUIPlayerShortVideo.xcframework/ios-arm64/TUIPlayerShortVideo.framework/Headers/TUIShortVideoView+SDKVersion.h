@@ -1,5 +1,5 @@
 // Copyright (c) 2024 Tencent. All rights reserved.
-// SDKVersion: 2.0.3.20
+// SDKVersion: 2.1.0.100
 
 #import "TUIShortVideoView.h"
 

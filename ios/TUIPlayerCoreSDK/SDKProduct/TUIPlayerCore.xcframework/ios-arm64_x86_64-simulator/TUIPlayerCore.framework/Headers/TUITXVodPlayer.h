@@ -14,6 +14,8 @@
 ///播放器代理
 @protocol TUITXVodPlayerDelegate <NSObject>
 
+@optional
+
 /**
  播放器状态
  @param player 当前播放
@@ -48,7 +50,16 @@
 - (void)onPlayEvent:(TUITXVodPlayer *)player
               event:(int)EvtID
           withParam:(NSDictionary *)param;
+
+/**
+ * 字幕数据回调
+ * @param player  当前播放器对象
+ * @param subtitleData  字幕数据，详细见 TXVodDef.h 文件
+ */
+- (void)onPlayer:(TUITXVodPlayer *)player subtitleData:(TXVodSubtitleData *)subtitleData;
+
 - (void)vodRenderModeChanged:(TUI_Enum_Type_RenderMode)renderMode;
+
 @end
 
 @interface TUITXVodPlayer : NSObject
@@ -69,6 +80,9 @@
 @property (nonatomic, assign) BOOL isAutoPlay;
 ///是否开启硬件加速
 @property (nonatomic, assign) BOOL enableHWAcceleration;
+/// 播放器对象
+@property (nonatomic, strong, readonly) TXVodPlayer *player;
+
 /**
  * ADD/Remove delegate
  */
@@ -138,7 +152,7 @@
 /**
  * 移除视频渲染图层
  */
--(void)removeVideoWidget;
+- (void)removeVideoWidget;
 
 /**
  * 设置播放开始时间
@@ -296,5 +310,12 @@
   * 停止播放音视频流
   */
 - (int)stopPlay;
+
+/**
+ * 重置播放器
+ * @param model 视频数据
+ */
+- (void)resetTXVodPlayerConfig:(TUIPlayerVideoModel *)model;
+
 @end
 

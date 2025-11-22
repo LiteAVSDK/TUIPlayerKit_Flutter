@@ -25,6 +25,7 @@
 #import "TUIPlayerLiveStrategyModel.h"
 #import "TUIPlayerLog.h"
 #import "TUIPlayerRecordManager.h"
+#import "TUIPlayerStrategyModel.h"
 #import "TUIPlayerSubtitleModel.h"
 #import "TUIPlayerVideoConfig.h"
 #import "TUIPlayerVideoConfigManager.h"

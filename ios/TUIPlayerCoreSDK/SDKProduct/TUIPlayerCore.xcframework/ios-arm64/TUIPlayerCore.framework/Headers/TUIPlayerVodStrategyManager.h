@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, getter=isEnableLastPrePlay) BOOL enableLastPrePlay;
 
 /**
+ *  预播放策略
+ */
+@property (nonatomic, assign, readonly) TUIPreplayStrategy preplayStrategy;
+
+/**
  *  添加代理
  *  @param  delegate 代理对象
  */

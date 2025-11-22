@@ -2,6 +2,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TUIPlayerCorePlayeEventHeader.h"
 #import "TUIPlayerVodStrategyModel.h"
 
 @class TUIPlayerVideoConfig;
@@ -26,6 +27,9 @@
 @property (nonatomic, assign) TUI_Enum_Type_RenderMode renderMode;
 ///自定义 HTTP Headers
 @property (nonatomic, strong) NSDictionary *headers;
+///点播播放器配置，优先级高于TUIPlayerVodStrategyModel
+@property (nonatomic, strong) TXVodPlayConfig *playerConfig;
+
 @end
 
 

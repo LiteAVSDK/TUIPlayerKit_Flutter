@@ -1,11 +1,12 @@
 // Copyright (c) 2023 Tencent. All rights reserved.
 
 #import <Foundation/Foundation.h>
+#import <TUIPlayerCore/TUIPlayerStrategyModel.h>
 #import "TUIPlayerCoreLiteAVSDKHeader.h"
 #import "TUIPlyerCoreSDKTypeDef.h"
 
 ///播放器策略模型
-@interface TUIPlayerVodStrategyModel : NSObject
+@interface TUIPlayerVodStrategyModel : TUIPlayerStrategyModel
 ///缓存个数，默认3
 @property (nonatomic, assign) NSInteger mPreloadConcurrentCount;
 ///预播放大小，单位MB，默认0.5MB
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) NSDictionary *mExtInfoMap;
 ///是否开启自适应码率，默认NO
 @property (nonatomic, assign) BOOL enableAutoBitrate;
+///平滑切换码率，默认NO
+@property(nonatomic, assign) BOOL smoothSwitchBitrate;
 ///设置媒资类型
 ///重要】若自适应码率播放，暂须指定具体类型，如自适应播放HLS直播资源，须传入TUI_MEDIA_TYPE_HLS_LIVE类型
 @property (nonatomic, assign) TUI_Enum_MediaType mediaType;
@@ -42,9 +45,9 @@
 ///默认值为AUDIO_NORMALIZATION_OFF。
 @property (nonatomic, assign) float audioNormalization;
 ///是否保留上一个预播放，默认NO，⚠️已废弃
-@property (nonatomic, assign) BOOL isLastPrePlay DEPRECATED_MSG_ATTRIBUTE("Use enableLastPrePlay instead.");
-///是否开启上一个预播放，默认NO
-@property (nonatomic, assign) BOOL enableLastPrePlay;
+@property (nonatomic, assign) BOOL isLastPrePlay DEPRECATED_MSG_ATTRIBUTE("Use preplayStrategy instead.");
+///是否开启上一个预播放，默认NO，⚠️已废弃
+@property (nonatomic, assign) BOOL enableLastPrePlay DEPRECATED_MSG_ATTRIBUTE("Use preplayStrategy instead.");
 ///超分类型，默认0
 ///注意：开启超分需要先集成超分插件，否则无效
 @property (nonatomic, assign) TUI_Enume_Type_SuperResolution superResolutionType;

@@ -126,5 +126,14 @@
  * @param view 视频渲染图层
  */
 - (void)getVideoWidget:(UIView *)view;
+
+/**
+ * 播放器回调字幕信息
+ * @param player 播放器对象
+ * @param subtitleData 字幕信息
+ * @discussion 此接口在子线程返回
+ */
+- (void)onPlayer:(TUITXVodPlayer *)player subtitleData:(TXVodSubtitleData *)subtitleData;
+
 @end
 

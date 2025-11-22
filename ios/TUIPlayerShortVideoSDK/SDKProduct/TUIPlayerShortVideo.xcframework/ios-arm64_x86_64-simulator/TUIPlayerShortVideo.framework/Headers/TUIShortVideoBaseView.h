@@ -14,6 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TUIShortVideoBaseViewDelegate <NSObject>
 
 - (void)layoutSubviewsChange;
+
+@optional
+/**
+ * @brief 获取widget的frame
+ * @param containerSize widget父view的size
+ */
+- (CGRect)widgetFrameWithContainerSize:(CGSize)containerSize;
+
 @end
 
 ///视频控件baseView

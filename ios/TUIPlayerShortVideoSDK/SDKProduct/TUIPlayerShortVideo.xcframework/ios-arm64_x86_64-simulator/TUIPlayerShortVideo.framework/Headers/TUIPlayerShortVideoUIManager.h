@@ -58,6 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @param viewClass  控制层类 ,viewClass是你封装好的视频控制view，包含如进度条，时间lable等控件
  * @param viewType 视图类型
  * 它将被整体覆盖在视频窗口上，大小与视频窗口一致。
+ * TUI_ITEM_VIEW_TYPE_VOD类型需要遵循TUIPlayerShortVideoControl协议
+ * TUI_ITEM_VIEW_TYPE_LIVE类型需要遵循TUIPlayerShortVideoLiveControl协议
+ * TUI_ITEM_VIEW_TYPE_CUSTOM类型需要遵循TUIPlayerShortVideoCustomControl协议
  */
 - (void)setControlViewClass:(Class)viewClass viewType:(TUI_ITEM_VIEW_TYPE)viewType;
 

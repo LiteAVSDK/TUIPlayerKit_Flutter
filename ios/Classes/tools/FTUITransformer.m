@@ -75,6 +75,7 @@
         ? TUI_SuperResolution_TSR
         : TUI_SuperResolution_NONE;
     }
+    model.preplayStrategy = TUIPreplayStrategyNext;
     model.mResumeModel = TUI_RESUM_MODEL_NONE;
     return model;
 }
