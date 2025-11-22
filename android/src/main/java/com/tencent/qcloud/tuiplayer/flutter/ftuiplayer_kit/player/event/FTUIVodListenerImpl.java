@@ -8,6 +8,11 @@ import com.tencent.qcloud.tuiplayer.core.api.ui.view.vod.TUIVodViewListener;
 public class FTUIVodListenerImpl implements TUIVodViewListener {
 
     @Override
+    public void onControllerPlayerAttached(TUIPlayerController tuiPlayerController) {
+
+    }
+
+    @Override
     public void onPlayerControllerBind(TUIPlayerController tuiPlayerController) {
 
     }
