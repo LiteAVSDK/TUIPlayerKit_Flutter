@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FtxMessages.h"
+#import "FtxShortVideoMessages.h"
 #import <TUIPlayerShortVideo/TUIPlayerShortVideo-umbrella.h>
 
 NS_ASSUME_NONNULL_BEGIN
