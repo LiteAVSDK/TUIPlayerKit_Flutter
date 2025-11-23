@@ -6,7 +6,7 @@
 //
 
 #import "FTUIShortController.h"
-#import "FtxMessages.h"
+#import "FtxShortVideoMessages.h"
 #import <TUIPlayerCore/TUIPlayerCore-umbrella.h>
 #import "FTUITransformer.h"
 #import "FTUIConstant.h"
@@ -258,6 +258,12 @@
         [self.vodManager.currentVodPlayer resumePlay];
     }
     return @(0);
+}
+
+- (void)setVideoLoopIsLoop:(BOOL)isLoop error:(FlutterError * _Nullable __autoreleasing *)error {
+    if (self.vodManager) {
+        self.vodManager.loop = isLoop;
+    }
 }
 
 - (TUIPlayerRecordManager*)recordManager {

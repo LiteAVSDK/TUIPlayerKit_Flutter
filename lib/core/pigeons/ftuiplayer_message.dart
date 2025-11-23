@@ -11,8 +11,8 @@
     dart run pigeon \
     --input lib/core/pigeons/ftuiplayer_message.dart \
     --dart_out lib/core/ftuiplayer_message.dart \
-    --objc_header_out ios/Classes/messages/FtxMessages.h \
-    --objc_source_out ios/Classes/messages/FtxMessages.m \
+    --objc_header_out ios/Classes/messages/FtxShortVideoMessages.h \
+    --objc_source_out ios/Classes/messages/FtxShortVideoMessages.m \
     --java_out ./android/src/main/java/com/tencent/qcloud/tuiplayer/flutter/ftuiplayer_kit/messages/FtxMessages.java \
     --java_package "com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages" \
     --copyright_header lib/core/pigeons/ftuiplayer_copy_right.txt
@@ -82,6 +82,8 @@ abstract class FTUIPlayerShortAPI {
   void preBindVideo(int pageViewId, int index);
 
   void release();
+
+  void setVideoLoop(bool isLoop);
 
 }
 

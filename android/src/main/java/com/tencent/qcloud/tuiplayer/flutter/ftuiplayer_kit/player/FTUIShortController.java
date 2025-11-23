@@ -34,6 +34,7 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
     private int mCurrentIndex;
     private final TUIVideoDataHolder mDataHolder;
     private final BinaryMessenger mMessenger;
+    private boolean mIsOneLoop = true;
 
     public FTUIShortController(Context context, FTUIItemViewFactory viewFactory, int id, BinaryMessenger messenger,
                                FTUIShortEngineObserver observer) {
@@ -72,6 +73,7 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
                 mManager.bindVideoView(itemVideoView);
                 TUIPlayerLog.v(TAG, "mCurrentIndex updated to:" + mCurrentIndex);
             }
+            handlePlayerLoopMode(itemVideoView);
         } else {
             TUIPlayerLog.e(TAG, "bindVideoView met a null view,viewId:" + viewId + ",isPreBind:" + isPreBind);
         }
@@ -140,11 +142,22 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
 //        mManager.replaceModel(source, index.intValue());
 //    }
 
+    private void handlePlayerLoopMode(TUIBaseVideoView itemView) {
+        if (null != itemView && null != itemView.getController() && null != itemView.getController().getPlayer()) {
+            itemView.getController().setLoop(mIsOneLoop);
+        }
+    }
+
     public void release() {
         TUIPlayerLog.i(TAG, "start release shortController,controllerId " + mId);
         FtxMessages.FTUIPlayerShortAPI.setUp(mMessenger, String.valueOf(mId), null);
         mManager.releasePlayers();
         mEngineObserver.onRelease(mId);
+    }
+
+    @Override
+    public void setVideoLoop(@NonNull Boolean isLoop) {
+        this.mIsOneLoop = isLoop;
     }
 
 
