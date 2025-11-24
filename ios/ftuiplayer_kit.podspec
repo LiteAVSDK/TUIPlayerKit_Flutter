@@ -24,8 +24,6 @@ TUIPlayerKit For Flutter
 
   s.dependency 'TUIPlayerCore/Player_Premium'
   s.dependency 'TUIPlayerShortVideo/Player_Premium'
-  s.dependency 'TXCMonetPlugin'
-  s.dependency 'tsrClient'
 
 #  s.vendored_frameworks = './TUIPlayerCoreSDK/SDKProduct/TUIPlayerCore.xcframework'
 #  s.vendored_frameworks = './TUIPlayerShortVideoSDK/SDKProduct/TUIPlayerShortVideo.xcframework'

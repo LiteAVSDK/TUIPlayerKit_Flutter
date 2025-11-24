@@ -1,6 +1,0 @@
-framework module TXCMonetPlugin {
-  umbrella header "TXCMonetPlugin.h"
-
-  export *
-  module * { export * }
-}
