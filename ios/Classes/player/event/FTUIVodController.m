@@ -119,7 +119,7 @@
 
 - (void)setRateRate:(double)rate error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error { 
     if (self.curPlayer) {
-        [self.curPlayer seekToTime:rate];
+        [self.curPlayer setRate:rate];
     }
 }
 
