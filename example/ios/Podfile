@@ -31,8 +31,8 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
   
-  pod 'TUIPlayerShortVideo/Player_Premium' ,:path => '../../ios/TUIPlayerShortVideoSDK/'
-  pod 'TUIPlayerCore/Player_Premium' ,:path => '../../ios/TUIPlayerCoreSDK/'
+  pod 'TUIPlayerShortVideo/Professional' ,:path => '../../ios/TUIPlayerShortVideoSDK/'
+  pod 'TUIPlayerCore/Professional' ,:path => '../../ios/TUIPlayerCoreSDK/'
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do

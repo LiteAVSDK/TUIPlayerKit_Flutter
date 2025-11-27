@@ -18,12 +18,12 @@ TUIPlayerKit For Flutter
   s.platform = :ios, '12.0'
   s.static_framework = true
 
-  s.dependency 'TXLiteAVSDK_Player_Premium'
+  s.dependency 'TXLiteAVSDK_Professional','12.8.19666'
 #  s.dependency 'TUIPlayerCoreSDK', :path => './TUIPlayerCoreSDK/TUIPlayerCore'
 #  s.dependency 'TUIPlayerShortVideoSDK', :path => './TUIPlayerCoreSDK/TUIPlayerShortVideo'
 
-  s.dependency 'TUIPlayerCore/Player_Premium'
-  s.dependency 'TUIPlayerShortVideo/Player_Premium'
+  s.dependency 'TUIPlayerCore/Professional'
+  s.dependency 'TUIPlayerShortVideo/Professional'
 
 #  s.vendored_frameworks = './TUIPlayerCoreSDK/SDKProduct/TUIPlayerCore.xcframework'
 #  s.vendored_frameworks = './TUIPlayerShortVideoSDK/SDKProduct/TUIPlayerShortVideo.xcframework'
