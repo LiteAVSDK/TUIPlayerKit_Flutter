@@ -30,7 +30,8 @@ flutter_ios_podfile_setup
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
-  
+
+  pod 'TXLiteAVSDK_Professional','12.9.20085'
   pod 'TUIPlayerShortVideo/Professional' ,:path => '../../ios/TUIPlayerShortVideoSDK/'
   pod 'TUIPlayerCore/Professional' ,:path => '../../ios/TUIPlayerCoreSDK/'
 

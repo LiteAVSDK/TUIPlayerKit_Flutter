@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.common.FTUIConstant;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.engine.FlutterViewEngine;
-import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
+import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FTUIMessages;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.player.FTUIShortEngine;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.view.FTUIItemViewFactory;
 
@@ -32,7 +32,7 @@ public class FtuiplayerKitPlugin implements FlutterPlugin, ActivityAware {
                 .registerViewFactory(FTUIConstant.TUI_SHORT_VIEW_ITEM_ID, itemViewFactory);
         mShortManager = new FTUIShortEngine(itemViewFactory, flutterPluginBinding.getApplicationContext(),
                 flutterPluginBinding.getBinaryMessenger());
-        FtxMessages.FTUIPlayerKitPluginAPI.setUp(flutterPluginBinding.getBinaryMessenger(), mShortManager);
+        FTUIMessages.FTUIPlayerKitPluginAPI.setUp(flutterPluginBinding.getBinaryMessenger(), mShortManager);
     }
 
     @Override

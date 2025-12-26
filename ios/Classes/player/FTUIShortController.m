@@ -6,7 +6,7 @@
 //
 
 #import "FTUIShortController.h"
-#import "FtxShortVideoMessages.h"
+#import "FTUIMessages.h"
 #import <TUIPlayerCore/TUIPlayerCore-umbrella.h>
 #import "FTUITransformer.h"
 #import "FTUIConstant.h"

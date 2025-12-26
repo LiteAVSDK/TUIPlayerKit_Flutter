@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.tencent.qcloud.tuiplayer.core.TUIPlayerCore;
 import com.tencent.qcloud.tuiplayer.core.tools.TUIPlayerLog;
-import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
+import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FTUIMessages;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.tools.FTUITransformer;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.view.FTUIItemViewFactory;
 
@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import io.flutter.plugin.common.BinaryMessenger;
 
-public class FTUIShortEngine implements FTUIShortEngineObserver, FtxMessages.FTUIPlayerKitPluginAPI {
+public class FTUIShortEngine implements FTUIShortEngineObserver, FTUIMessages.FTUIPlayerKitPluginAPI {
 
     private static final String TAG = "FTUIShortEngine";
 
@@ -52,7 +52,7 @@ public class FTUIShortEngine implements FTUIShortEngineObserver, FtxMessages.FTU
     }
 
     @Override
-    public void setConfig(@NonNull FtxMessages.FTUIPlayerConfigMsg msg) {
+    public void setConfig(@NonNull FTUIMessages.FTUIPlayerConfigMsg msg) {
         TUIPlayerLog.i(TAG, "called setConfig:" + msg);
         TUIPlayerCore.init(mContext, FTUITransformer.transformToTUIPlayerConfig(msg));
     }

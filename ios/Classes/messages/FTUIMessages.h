@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /// The codec used by all APIs.
-NSObject<FlutterMessageCodec> *nullGetFtxShortVideoMessagesCodec(void);
+NSObject<FlutterMessageCodec> *nullGetFTUIMessagesCodec(void);
 
 @protocol FTUIPlayerKitPluginAPI
 - (void)setConfigMsg:(FTUIPlayerConfigMsg *)msg error:(FlutterError *_Nullable *_Nonnull)error;

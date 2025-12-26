@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.tencent.qcloud.tuiplayer.core.api.common.TUIConstants;
-import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
+import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FTUIMessages;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.player.event.FTUIVodController;
 import com.tencent.qcloud.tuiplayer.shortvideo.ui.view.TUIShortVideoItemView;
 
@@ -33,12 +33,12 @@ public class FTUIShortVideoItemView implements PlatformView {
         mItemView.setClickable(false);
         mItemView.setFocusableInTouchMode(false);
         mItemView.setLongClickable(false);
-        FtxMessages.FTUIVodPlayerFlutterAPI flutterAPI =
-                new FtxMessages.FTUIVodPlayerFlutterAPI(messenger, String.valueOf(viewId));
+        FTUIMessages.FTUIVodPlayerFlutterAPI flutterAPI =
+                new FTUIMessages.FTUIVodPlayerFlutterAPI(messenger, String.valueOf(viewId));
         mController = new FTUIVodController(flutterAPI, this);
         mItemView.addVideoItemViewListener(mController);
         mItemView.createDisplayView();
-        FtxMessages.FTUIVodPlayerAPI.setUp(messenger, String.valueOf(viewId), mController);
+        FTUIMessages.FTUIVodPlayerAPI.setUp(messenger, String.valueOf(viewId), mController);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class FTUIShortVideoItemView implements PlatformView {
     @Override
     public void dispose() {
         mItemView.onViewDestroyed();
-        FtxMessages.FTUIVodPlayerAPI.setUp(mMessenger, String.valueOf(viewId), null);
+        FTUIMessages.FTUIVodPlayerAPI.setUp(mMessenger, String.valueOf(viewId), null);
         mPlatformObserver.onDispose(viewId);
     }
 }

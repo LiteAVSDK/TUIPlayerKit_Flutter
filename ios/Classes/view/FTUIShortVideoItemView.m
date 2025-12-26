@@ -7,7 +7,7 @@
 
 #import "FTUIShortVideoItemView.h"
 #import <TUIPlayerShortVideo/TUIPlayerShortVideo-umbrella.h>
-#import "FtxShortVideoMessages.h"
+#import "FTUIMessages.h"
 
 @interface FTUIShortVideoItemView()
 

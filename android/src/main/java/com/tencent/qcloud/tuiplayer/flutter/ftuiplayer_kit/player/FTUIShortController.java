@@ -14,7 +14,7 @@ import com.tencent.qcloud.tuiplayer.core.api.ui.player.ITUIVodPlayer;
 import com.tencent.qcloud.tuiplayer.core.api.ui.view.TUIBaseVideoView;
 import com.tencent.qcloud.tuiplayer.core.preload.TUIVideoDataHolder;
 import com.tencent.qcloud.tuiplayer.core.tools.TUIPlayerLog;
-import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
+import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FTUIMessages;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.tools.FTUITransformer;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.view.FTUIItemViewFactory;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.view.FTUIShortVideoItemView;
@@ -23,7 +23,7 @@ import java.util.List;
 
 import io.flutter.plugin.common.BinaryMessenger;
 
-public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPlayerShortAPI {
+public class FTUIShortController implements TUIPlayerBridge, FTUIMessages.FTUIPlayerShortAPI {
 
     private static final String TAG = "FTUIShortController";
 
@@ -45,7 +45,7 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
         mViewFactory = viewFactory;
         mId = id;
         mEngineObserver = observer;
-        FtxMessages.FTUIPlayerShortAPI.setUp(messenger, String.valueOf(mId), this);
+        FTUIMessages.FTUIPlayerShortAPI.setUp(messenger, String.valueOf(mId), this);
     }
 
     public void bindVideoView(int viewId, boolean isPreBind, int curIndex) {
@@ -81,14 +81,14 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
 
     @NonNull
     @Override
-    public Long setModels(@NonNull FtxMessages.FTUIListVodSourceMsg msg) {
+    public Long setModels(@NonNull FTUIMessages.FTUIListVodSourceMsg msg) {
         List<TUIPlaySource> sources = TUIDataUtils.copyModels(FTUITransformer.transToListVodSourceFromMsg(msg));
         return (long) mManager.setModels(sources);
     }
 
     @NonNull
     @Override
-    public Long appendModels(@NonNull FtxMessages.FTUIListVodSourceMsg msg) {
+    public Long appendModels(@NonNull FTUIMessages.FTUIListVodSourceMsg msg) {
         List<TUIPlaySource> copyModels = TUIDataUtils.copyModels(FTUITransformer.transToListVodSourceFromMsg(msg));
         return (long) mManager.appendModels(copyModels);
     }
@@ -100,19 +100,19 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
     }
 
     @Override
-    public void setVodStrategy(@NonNull FtxMessages.FTUIPlayerVodStrategyMsg msg) {
+    public void setVodStrategy(@NonNull FTUIMessages.FTUIPlayerVodStrategyMsg msg) {
         TUIPlayerVodStrategy strategy = FTUITransformer.transToVodStrategyOpenPreFromMsg(msg);
         mManager.updateVodStrategy(strategy);
     }
 
     @NonNull
     @Override
-    public FtxMessages.FTUIVodSourceMsg getCurrentModel() {
+    public FTUIMessages.FTUIVodSourceMsg getCurrentModel() {
         TUIPlaySource source = mManager.getCurrentModel();
         if (source instanceof TUIVideoSource) {
             return FTUITransformer.transToMsgFromVodSource((TUIVideoSource) source);
         }
-        return new FtxMessages.FTUIVodSourceMsg();
+        return new FTUIMessages.FTUIVodSourceMsg();
     }
 
     @Override
@@ -131,13 +131,13 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
 //    }
 //
 //    @Override
-//    public void insertModels(@NonNull FtxMessages.FTUIListVodSourceMsg msg, @NonNull Long startIndex) {
+//    public void insertModels(@NonNull FTUIMessages.FTUIListVodSourceMsg msg, @NonNull Long startIndex) {
 //        List<TUIPlaySource> sources = TUIDataUtils.copyModels(FTUITransformer.transToListVodSourceFromMsg(msg));
 //        mManager.insertModels(sources, startIndex.intValue());
 //    }
 //
 //    @Override
-//    public void replaceModel(@NonNull FtxMessages.FTUIVodSourceMsg msg, @NonNull Long index) {
+//    public void replaceModel(@NonNull FTUIMessages.FTUIVodSourceMsg msg, @NonNull Long index) {
 //        TUIPlaySource source = FTUITransformer.transToVodSourceFromMsg(msg);
 //        mManager.replaceModel(source, index.intValue());
 //    }
@@ -150,7 +150,7 @@ public class FTUIShortController implements TUIPlayerBridge, FtxMessages.FTUIPla
 
     public void release() {
         TUIPlayerLog.i(TAG, "start release shortController,controllerId " + mId);
-        FtxMessages.FTUIPlayerShortAPI.setUp(mMessenger, String.valueOf(mId), null);
+        FTUIMessages.FTUIPlayerShortAPI.setUp(mMessenger, String.valueOf(mId), null);
         mManager.releasePlayers();
         mEngineObserver.onRelease(mId);
     }

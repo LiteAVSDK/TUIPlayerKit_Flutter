@@ -6,14 +6,14 @@ import com.tencent.qcloud.tuiplayer.core.api.TUIPlayerVodStrategy;
 import com.tencent.qcloud.tuiplayer.core.api.common.TUIConstants;
 import com.tencent.qcloud.tuiplayer.core.api.model.TUIPlayerVideoConfig;
 import com.tencent.qcloud.tuiplayer.core.api.model.TUIVideoSource;
-import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
+import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FTUIMessages;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FTUITransformer {
 
-    public static TUIPlayerConfig transformToTUIPlayerConfig(FtxMessages.FTUIPlayerConfigMsg msg) {
+    public static TUIPlayerConfig transformToTUIPlayerConfig(FTUIMessages.FTUIPlayerConfigMsg msg) {
         boolean enableLog = msg.getEnableLog() == null || msg.getEnableLog();
         return new TUIPlayerConfig.Builder()
                 .enableLog(enableLog)
@@ -22,8 +22,8 @@ public class FTUITransformer {
                 .build();
     }
 
-    public static FtxMessages.FTUIVodSourceMsg transToMsgFromVodSource(TUIVideoSource source) {
-        FtxMessages.FTUIVodSourceMsg msg = new FtxMessages.FTUIVodSourceMsg();
+    public static FTUIMessages.FTUIVodSourceMsg transToMsgFromVodSource(TUIVideoSource source) {
+        FTUIMessages.FTUIVodSourceMsg msg = new FTUIMessages.FTUIVodSourceMsg();
         msg.setVideoURL(source.getVideoURL());
         msg.setAppId((long)source.getAppId());
         msg.setFileId(source.getFileId());
@@ -34,18 +34,18 @@ public class FTUITransformer {
         return msg;
     }
 
-    public static List<TUIVideoSource> transToListVodSourceFromMsg(FtxMessages.FTUIListVodSourceMsg msg) {
+    public static List<TUIVideoSource> transToListVodSourceFromMsg(FTUIMessages.FTUIListVodSourceMsg msg) {
         List<TUIVideoSource> sourceList = new ArrayList<>();
-        final List<FtxMessages.FTUIVodSourceMsg> msgList = msg.getListMsg();
+        final List<FTUIMessages.FTUIVodSourceMsg> msgList = msg.getListMsg();
         if (null != msgList) {
-            for (FtxMessages.FTUIVodSourceMsg itemMsg : msgList) {
+            for (FTUIMessages.FTUIVodSourceMsg itemMsg : msgList) {
                 sourceList.add(transToVodSourceFromMsg(itemMsg));
             }
         }
         return sourceList;
     }
 
-    public static TUIVideoSource transToVodSourceFromMsg(FtxMessages.FTUIVodSourceMsg itemMsg) {
+    public static TUIVideoSource transToVodSourceFromMsg(FTUIMessages.FTUIVodSourceMsg itemMsg) {
         TUIVideoSource videoSource = new TUIVideoSource();
         videoSource.setVideoURL(itemMsg.getVideoURL());
         if (null != itemMsg.getAppId()) {
@@ -63,7 +63,7 @@ public class FTUITransformer {
         return videoSource;
     }
 
-    public static TUIPlayerVodStrategy transToVodStrategyOpenPreFromMsg(FtxMessages.FTUIPlayerVodStrategyMsg msg) {
+    public static TUIPlayerVodStrategy transToVodStrategyOpenPreFromMsg(FTUIMessages.FTUIPlayerVodStrategyMsg msg) {
         TUIPlayerVodStrategy.Builder strategy = new TUIPlayerVodStrategy.Builder();
         if (null != msg.getPreloadCount()) {
             strategy.setPreloadCount(msg.getPreloadCount().intValue());

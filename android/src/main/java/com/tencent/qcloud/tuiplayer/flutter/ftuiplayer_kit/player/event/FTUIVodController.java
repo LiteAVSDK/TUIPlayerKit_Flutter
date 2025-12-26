@@ -13,7 +13,7 @@ import com.tencent.qcloud.tuiplayer.core.api.ui.view.TUIBaseVideoView;
 import com.tencent.qcloud.tuiplayer.core.api.ui.view.vod.TUIVodViewListener;
 import com.tencent.qcloud.tuiplayer.core.tools.TUIPlayerLog;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.common.FTUIConstant;
-import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FtxMessages;
+import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages.FTUIMessages;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.tools.FTUITransformer;
 import com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.tools.FTUIUtils;
 import com.tencent.rtmp.TXTrackInfo;
@@ -23,16 +23,16 @@ import java.util.Map;
 
 import io.flutter.plugin.platform.PlatformView;
 
-public class FTUIVodController implements TUIVodViewListener, FtxMessages.FTUIVodPlayerAPI,
-        FtxMessages.VoidResult, TUIVodObserver {
+public class FTUIVodController implements TUIVodViewListener, FTUIMessages.FTUIVodPlayerAPI,
+        FTUIMessages.VoidResult, TUIVodObserver {
 
     private static final String TAG = "FTUIVodController";
     private TUIPlayerController mController;
     private TUIVideoSource mCurSource;
     private final PlatformView mPlatformView;
-    FtxMessages.FTUIVodPlayerFlutterAPI mFlutterAPI;
+    FTUIMessages.FTUIVodPlayerFlutterAPI mFlutterAPI;
 
-    public FTUIVodController(FtxMessages.FTUIVodPlayerFlutterAPI flutterAPI, PlatformView platformView) {
+    public FTUIVodController(FTUIMessages.FTUIVodPlayerFlutterAPI flutterAPI, PlatformView platformView) {
         mFlutterAPI = flutterAPI;
         mPlatformView = platformView;
     }
@@ -78,7 +78,7 @@ public class FTUIVodController implements TUIVodViewListener, FtxMessages.FTUIVo
     }
 
     @Override
-    public void startPlay(@NonNull FtxMessages.FTUIVodSourceMsg msg) {
+    public void startPlay(@NonNull FTUIMessages.FTUIVodSourceMsg msg) {
         if (null != mController && mController.getPlayer() instanceof ITUIVodPlayer) {
             TUIVideoSource source = FTUITransformer.transToVodSourceFromMsg(msg);
             ((ITUIVodPlayer) mController.getPlayer()).startPlay(source);

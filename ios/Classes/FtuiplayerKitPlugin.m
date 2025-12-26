@@ -6,7 +6,7 @@
 //
 
 #import "FtuiplayerKitPlugin.h"
-#import "FtxShortVideoMessages.h"
+#import "FTUIMessages.h"
 #import <TUIPlayerCore/TUIPlayerCore-umbrella.h>
 #import "FTUIConstant.h"
 #import "FTUIShortEngine.h"
@@ -21,12 +21,12 @@
 
 @implementation FtuiplayerKitPlugin
 
-FtuiplayerKitPlugin* instance;
+FtuiplayerKitPlugin* tuiKitInstance;
 
 + (void)registerWithRegistrar:(nonnull NSObject<FlutterPluginRegistrar> *)registrar {
     FTUIItemViewFactory *viewFactory = [[FTUIItemViewFactory alloc] initWithBinaryMessenger:[registrar messenger]];
     [registrar registerViewFactory:viewFactory withId:TUI_SHORT_VIEW_ITEM_ID];
-    instance = [[FtuiplayerKitPlugin alloc] initWithRegistrar:registrar viewFactory:viewFactory];
+    tuiKitInstance = [[FtuiplayerKitPlugin alloc] initWithRegistrar:registrar viewFactory:viewFactory];
 }
 
 - (void)detachFromEngineForRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {

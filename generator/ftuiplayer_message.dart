@@ -6,14 +6,14 @@
 /// pigeon原始原件，由此文件生成messages原生通信代码
 /// 生成命令如下，使用生成命令的时候，需要实现注释掉以上两个import导入
 
-// import 'package:pigeon/pigeon.dart';
+import 'package:pigeon/pigeon.dart';
 /*
     dart run pigeon \
-    --input lib/core/pigeons/ftuiplayer_message.dart \
+    --input generator/ftuiplayer_message.dart \
     --dart_out lib/core/ftuiplayer_message.dart \
-    --objc_header_out ios/Classes/messages/FtxShortVideoMessages.h \
-    --objc_source_out ios/Classes/messages/FtxShortVideoMessages.m \
-    --java_out ./android/src/main/java/com/tencent/qcloud/tuiplayer/flutter/ftuiplayer_kit/messages/FtxMessages.java \
+    --objc_header_out ios/Classes/messages/FTUIMessages.h \
+    --objc_source_out ios/Classes/messages/FTUIMessages.m \
+    --java_out ./android/src/main/java/com/tencent/qcloud/tuiplayer/flutter/ftuiplayer_kit/messages/FTUIMessages.java \
     --java_package "com.tencent.qcloud.tuiplayer.flutter.ftuiplayer_kit.messages" \
     --copyright_header lib/core/pigeons/ftuiplayer_copy_right.txt
 

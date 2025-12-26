@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FtxShortVideoMessages.h"
+#import "FTUIMessages.h"
 #import <TUIPlayerShortVideo/TUIPlayerShortVideo-umbrella.h>
 #import "FTUIPlatformViewObserver.h"
 

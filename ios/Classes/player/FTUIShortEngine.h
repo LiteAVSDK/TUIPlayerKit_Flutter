@@ -9,7 +9,7 @@
 #import "FTUIItemViewFactory.h"
 #import <Flutter/Flutter.h>
 #import "FTUIShortEngineObserver.h"
-#import "FtxShortVideoMessages.h"
+#import "FTUIMessages.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
